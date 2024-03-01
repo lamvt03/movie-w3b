@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-lg-2">
                 <div class="header__logo">
-                    <a href="">
+                    <a href="{{ route('home') }}">
                         <img src="{{ asset('img/logo.png') }}" alt="Website logo" />
                     </a>
                 </div>
@@ -19,7 +19,7 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active">
-                                <a href="">
+                                <a href="{{ route('home') }}">
                                     <i class="fa-solid fa-house"></i>
                                     Trang Chủ
                                 </a>
@@ -42,7 +42,7 @@
                                     <li><a href="#">Phim thần thoại</a></li>
                                 </ul>
                             </li>
-                            <li><a href=""><i class="fa-solid fa-circle-info"></i>
+                            <li><a href="{{ route('about') }}"><i class="fa-solid fa-circle-info"></i>
                                     Giới Thiệu</a></li>
                             <li><a style="cursor: pointer;" class="search-switch"><i class="fa-solid fa-magnifying-glass"></i> Tìm
                                     Kiếm</a></li>

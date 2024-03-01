@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('web.home');
-});
+Route::get('/', 'HomeController@index')->name('home');
+Route::get('/about', 'HomeController@about')->name('about');

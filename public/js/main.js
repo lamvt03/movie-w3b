@@ -53,10 +53,10 @@
 	/*------------------
 		Navigation
 	--------------------*/
-	$(".mobile-menu").slicknav({
-		prependTo: '#mobile-menu-wrap',
-		allowParentLinks: true
-	});
+	// $(".mobile-menu").slicknav({
+	// 	prependTo: '#mobile-menu-wrap',
+	// 	allowParentLinks: true
+	// });
 
 	/*------------------
 		Hero Slider
@@ -68,10 +68,10 @@
 		items: 1,
 		dots: true,
 		nav: true,
-		navText: ["<span class='arrow_carrot-left'></span>", "<span class='arrow_carrot-right'></span>"],
+		navText: ["<i class='fa-solid fa-angle-left' style='transform: rotate(-45deg)'></i>", "<i class='fa-solid fa-angle-right' style='transform: rotate(-45deg)'></i>"],
 		animateOut: 'fadeOut',
 		animateIn: 'fadeIn',
-		smartSpeed: 1200,
+		smartSpeed: 1500,
 		autoHeight: false,
 		autoplay: true,
 		mouseDrag: false
@@ -88,7 +88,7 @@
 	/*------------------
 		Niceselect
 	--------------------*/
-	$('select').niceSelect();
+	// $('select').niceSelect();
 
 	/*------------------
 		Scroll To Top
