@@ -7,15 +7,15 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="footer__logo">
-                    <a href="">
-                        <img src="{{ asset('img/logo.png') }}" alt="Website Logi">
+                    <a href="{{ route('home') }}">
+                        <img src="{{ asset('img/logo.png') }}" alt="Website Logo">
                     </a>
                 </div>
             </div>
             <div class="col-lg-12">
                 <div class="footer__nav">
                     <ul>
-                        <li class="active"><a href="">Trang Chủ</a></li>
+                        <li class="active"><a href="{{ route('home') }}">Trang Chủ</a></li>
                         <li><a href="">Danh Sách Phim</a></li>
                         <li><a href="">Liên Hệ Với Chúng Tôi</a></li>
                         @auth
