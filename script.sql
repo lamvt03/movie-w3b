@@ -138,7 +138,7 @@ CREATE TABLE `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -147,8 +147,40 @@ CREATE TABLE `migrations` (
 
 LOCK TABLES `migrations` WRITE;
 /*!40000 ALTER TABLE `migrations` DISABLE KEYS */;
-INSERT INTO `migrations` VALUES (1,'2014_10_12_000000_create_users_table',1),(2,'2014_10_12_100000_create_password_resets_table',1),(3,'2019_08_19_000000_create_failed_jobs_table',1),(4,'2024_02_19_143822_create_videos_table',1),(5,'2024_02_19_145209_create_roles_table',1),(6,'2024_02_19_145444_create_user_tokens_table',1),(7,'2024_02_19_145806_create_categoies_table',1),(8,'2024_02_19_150617_create_comments_table',1),(9,'2024_02_19_150756_create_histories_table',1),(10,'2024_02_19_151025_create_ratings_table',1);
+INSERT INTO `migrations` VALUES (21,'2014_10_12_000000_create_users_table',1),(22,'2014_10_12_100000_create_password_resets_table',1),(23,'2019_08_19_000000_create_failed_jobs_table',1),(24,'2024_02_19_143822_create_videos_table',1),(25,'2024_02_19_145209_create_roles_table',1),(26,'2024_02_19_145444_create_user_tokens_table',1),(27,'2024_02_19_145806_create_categoies_table',1),(28,'2024_02_19_150617_create_comments_table',1),(29,'2024_02_19_150756_create_histories_table',1),(30,'2024_02_19_151025_create_ratings_table',1),(31,'2024_03_01_135955_create_orders_table',2);
 /*!40000 ALTER TABLE `migrations` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `orders`
+--
+
+DROP TABLE IF EXISTS `orders`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `orders` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `vnp_TxnRef` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vnp_OrderInfo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vnp_ResponseCode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vnp_TransactionNo` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vnp_BankCode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `vnp_Amount` bigint unsigned NOT NULL,
+  `userId` bigint NOT NULL,
+  `videoId` bigint NOT NULL,
+  `vnp_PayDate` timestamp NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `orders`
+--
+
+LOCK TABLES `orders` WRITE;
+/*!40000 ALTER TABLE `orders` DISABLE KEYS */;
+INSERT INTO `orders` VALUES (1,'59836674','Thanh toan don hang:59836674  ','00','14084747','NCB',20000,2,1,'2023-11-29 10:43:51'),(2,'73526453','Thanh toan don hang:73526453  ','24','0','NCB',15000,2,5,'2023-11-29 10:46:12'),(3,'87334615','Thanh toan don hang:87334615  ','00','14084752','NCB',15000,3,5,'2023-11-29 10:50:53'),(4,'43297020','Thanh toan don hang:43297020  ','00','14084772','NCB',10000,4,7,'2023-11-29 11:05:05'),(5,'94497026','Thanh toan don hang:94497026  ','00','14084942','NCB',10000,5,7,'2023-11-29 17:19:47'),(6,'43220687','Thanh toan don hang:43220687  ','00','14084954','NCB',10000,6,9,'2023-11-29 17:56:30');
+/*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
 --
@@ -327,4 +359,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-20 11:18:50
+-- Dump completed on 2024-03-01 21:19:39
