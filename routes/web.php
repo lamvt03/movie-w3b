@@ -13,3 +13,9 @@
 
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/register','AuthController@showFormRegister')->name('showFormRegister');
+Route::post('/register','AuthController@register')->name('register');
+Route::get('/login','AuthController@showFormLogin')->name('showFormLogin');
+Route::post('/login','AuthController@login')->name('login');
+Route::get('logout','AuthController@logout')->name('logout');
+
