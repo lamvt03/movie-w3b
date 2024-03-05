@@ -47,7 +47,7 @@
                             <li><a style="cursor: pointer;" class="search-switch"><i class="fa-solid fa-magnifying-glass"></i> Tìm
                                     Kiếm</a></li>
                             @guest
-                            <li><a href=""><i class="fa-solid fa-user"></i>
+                            <li><a href="{{ route('showFormLogin')}}"><i class="fa-solid fa-user"></i>
                                     Đăng Nhập</a></li>
                             @else
                             <li><a href="#"> <span class="wave">👋</span> Xin chào
@@ -57,7 +57,7 @@
                                 <ul class="dropdown">
                                     <li><a href="">Trang cá nhân</a></li>
                                     <li><a href="">Lịch sử giao dịch</a></li>
-                                    <li><a href="">Đăng xuất</a></li>
+                                    <li><a href="{{route('logout')}}">Đăng xuất</a></li>
                                 </ul>
                             </li>
                             @endguest
