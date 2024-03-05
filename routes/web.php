@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,12 +12,11 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
-Route::get('/register','AuthController@showFormRegister')->name('showFormRegister');
-Route::post('/register','AuthController@register')->name('register');
-Route::get('/login','AuthController@showFormLogin')->name('showFormLogin');
-Route::post('/login','AuthController@login')->name('login');
-Route::get('logout','AuthController@logout')->name('logout');
-
+Route::get('/register',[AuthController::class,'showFormRegister'])->name('showFormRegister');
+Route::post('/register',[AuthController::class,'register'])->name('register');
+Route::get('/login',[AuthController::class,'showFormLogin'])->name('showFormLogin');
+Route::post('/login',[AuthController::class,'login'])->name('login');
+Route::get('logout',[AuthController::class,'logout'])->name('logout');
+Route::get('forgot-password',[ForgotPasswordController::class,'ShowForgotPassPage'])->name('showForgotPassPage');
