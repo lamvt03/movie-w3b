@@ -45,7 +45,7 @@
         <div class="search-close-switch">
             <i class="fa-solid fa-xmark"></i>
         </div>
-        <form action="" method="get" class="search-model-form"
+        <form action="{{ route('search') }}" method="get" class="search-model-form"
               autocomplete="off">
             <input type="text" name="keyword" id="search-input"
                    placeholder="Tìm kiếm....."/>
