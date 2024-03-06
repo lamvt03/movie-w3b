@@ -18,4 +18,5 @@ Route::post('/register','AuthController@register')->name('register');
 Route::get('/login','AuthController@showFormLogin')->name('showFormLogin');
 Route::post('/login','AuthController@login')->name('login');
 Route::get('logout','AuthController@logout')->name('logout');
+Route::get('/search', 'HomeController@search')->name('search');
 
