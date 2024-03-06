@@ -19,4 +19,6 @@ Route::post('/register',[AuthController::class,'register'])->name('register');
 Route::get('/login',[AuthController::class,'showFormLogin'])->name('showFormLogin');
 Route::post('/login',[AuthController::class,'login'])->name('login');
 Route::get('logout',[AuthController::class,'logout'])->name('logout');
+Route::get('/search', 'HomeController@search')->name('search');
 Route::get('forgot-password',[ForgotPasswordController::class,'ShowForgotPassPage'])->name('showForgotPassPage');
+
