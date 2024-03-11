@@ -17,9 +17,9 @@
                             <h2>{{ $trendingVideo->title }}</h2>
                             <p>Thể loại: {{ $trendingVideo->category->name }}</p>
                             @if ($trendingVideo->price == 0)
-                            <a href=""><span>Xem Ngay</span> <i class="fa fa-angle-right"></i></a>
+                            <a href="{{ route('video.watch', ['v' => $video->href])}}"><span>Xem Ngay</span> <i class="fa fa-angle-right"></i></a>
                             @else
-                            <a href="" class="watch-btn"><span>{{ number_format($trendingVideo->price, 0, ',', '.') .
+                            <a href="{{ route('video.details', ['v' => $video->href])}}" class="watch-btn"><span>{{ number_format($trendingVideo->price, 0, ',', '.') .
                                     '₫' }}
                                 </span>
                                 <i class="fa fa-angle-right"></i></a>
@@ -57,7 +57,7 @@
                         @foreach ($videos as $video)
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <a href="${initParam['mvcPath']}/video/detail?v=${video.href}">
+                                <a href="{{ route('video.details', ['v' => $video->href]) }}">
                                     <div class="product__item__pic set-bg" data-setbg="{{ $video->poster}}">
                                         <div class="comment">
                                             <i class="fa-solid fa-heart"></i> {{ count($video->histories) }}

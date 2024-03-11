@@ -20,3 +20,9 @@ Route::post('/login','AuthController@login')->name('login');
 Route::get('logout','AuthController@logout')->name('logout');
 Route::get('/search', 'HomeController@search')->name('search');
 
+Route::group(['prefix' => 'video'], function(){
+    Route::get('details', 'HomeController@videoDetails')->name('video.details');
+    Route::get('watch', 'HomeController@videoWatch')->name('video.watch');
+});
+
+
