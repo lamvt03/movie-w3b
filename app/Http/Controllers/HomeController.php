@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Order;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -16,6 +17,31 @@ class HomeController extends Controller
                 'trendingVideos' => $trendingVideos,
                 'videos' => $videos
             ]);
+    }
+
+    public function videoDetails(Request $request){
+        $models = [];
+        $href = $request->v;
+        $video = Video::where('href', $href)->first();
+        $models['video'] = $video;
+        if(Auth::check()){
+            $user = Auth::user();
+            $order = Order::where('userId', $user->id)
+                ->where('videoId', $video->id)
+                ->first();
+            if($order){
+                $models['order'] = $order;
+            }
+        }
+        $models['flagLikeButton'] = true;
+        return view('web.video-details')->with($models);
+    }
+
+    public function videoWatch(Request $request){
+        $href = $request->v;
+        $video = Video::where('href', $href)->first();
+        // $models['video'] = $video;
+        return view('web.video-watch')->with(['video' => $video]);
     }
 
     public function search(Request $request){
