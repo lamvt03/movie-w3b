@@ -624,7 +624,7 @@ ol {
 
 .product {
     padding-bottom: 60px;
-    padding-top: 80px;
+    padding-top: 40px;
 }
 
 .product-page {
@@ -1751,10 +1751,10 @@ ol {
     margin-bottom: 34px;
 }
 
-#showMoreBtn{
+.showMoreBtn{
     color: #fff;
 }
-#showMoreBtn:hover{
+.showMoreBtn:hover{
     opacity: 0.9;
     cursor: pointer;
 }
@@ -2388,6 +2388,7 @@ section .card {
 
     .product__page__title .section-title {
         margin-bottom: 30px;
+        text-transform: uppercase;
     }
 
     .product__page__title .product__page__filter {
