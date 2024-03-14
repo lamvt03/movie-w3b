@@ -3,8 +3,12 @@
     <div class="loader"></div>
 </div>
 
+<div class="loading-container invisible">
+    <div class="loading-spinner"></div>
+</div>
+
 <!-- header section: begin -->
-<header class="header">
+<header id="top-header" class="header">
     <div class="container">
         <div class="row">
             <div class="col-lg-2">

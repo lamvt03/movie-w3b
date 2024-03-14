@@ -1368,10 +1368,12 @@ ol {
 
 .breadcrumb__links a:after {
     position: absolute;
+    display: inline-block;
     right: -14px;
-    top: 0;
-    content: "";
-    font-family: "FontAwesome";
+    top: 6px;
+    content: "\f105";
+    font: var(--fa-font-solid);
+    /* font-family: "FontAwesome"; */
 }
 
 .breadcrumb__links span {
@@ -1749,6 +1751,14 @@ ol {
     margin-bottom: 34px;
 }
 
+#showMoreBtn{
+    color: #fff;
+}
+#showMoreBtn:hover{
+    opacity: 0.9;
+    cursor: pointer;
+}
+
 .blog__details__form form textarea::-webkit-input-placeholder {
     color: #a6a6a6;
 }
@@ -1768,6 +1778,31 @@ ol {
 .blog__details__form form textarea::placeholder {
     color: #a6a6a6;
 }
+.loading-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.loading-spinner {
+    border: 6px solid rgba(0, 0, 0, 0.3);
+    border-left-color: var(--secondary-color);
+    border-radius: 50%;
+    width: 60px;
+    height: 60px;
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    to { transform: rotate(360deg); }
+}
+  
 
 /*---------------------
   Login

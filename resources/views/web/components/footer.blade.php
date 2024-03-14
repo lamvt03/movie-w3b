@@ -30,7 +30,7 @@
                     <script>
                         document.write(new Date().getFullYear());
                     </script>
-                    All rights reserved | Design and Developed by Group 3
+                    All rights reserved | Design and Developed by Group 11
                 </p>
 
             </div>

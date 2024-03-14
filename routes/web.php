@@ -23,6 +23,7 @@ Route::get('/search', 'HomeController@search')->name('search');
 Route::group(['prefix' => 'video'], function(){
     Route::get('details', 'HomeController@videoDetails')->name('video.details');
     Route::get('watch', 'HomeController@videoWatch')->name('video.watch');
+    Route::post('comment', 'HomeController@videoComment')->name('video.comment');
 });
 
 
