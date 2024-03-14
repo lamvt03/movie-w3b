@@ -4,6 +4,7 @@
 
 @section('content')
 <!-- Breadcrumb Begin -->
+
 <div id="breadcrumb" class="breadcrumb-option">
     <div class="container">
         <div class="row">
@@ -34,7 +35,7 @@
                     <div class="section-title">
                         <h5 class="mb-6">Bình luận</h5>
                     </div>
-
+                    
                     <div id="review-container">
                         @foreach ($comments as $comment )
                         <div class="anime__review__item">
@@ -48,6 +49,7 @@
                                 @endphp
                                 <h6>
                                     {{ $comment->createdBy->fullname }} - <span>{{ $carbonDate->diffForHumans() }}</span>
+
                                 </h6>
                                 <p>{{ $comment->content }}</p>
                             </div>
@@ -186,21 +188,4 @@ const timeAgo = timestamp => {
             console.error('Error:', error);
         });
     }
-
-    // $(document).ready(function() {
-    //     let page = 1;
-    //     $('#showMoreBtn').click(function() {
-    //         console.log('clicked');
-    //         const href = document.querySelector('#href').value;
-    //         $.ajax({
-    //             url: `${APP_URL}/api/comment/list?v=${href}&page=${page}`,
-    //             type: 'GET',
-    //             dataType: 'json',
-    //         }).done(function(result) {
-    //             console.log(result);
-    //         });
-        
-    //     });
-    // });
 </script>
-@endsection

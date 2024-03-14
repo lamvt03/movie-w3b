@@ -9,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-
 class HomeController extends Controller
 {
     public function index() {
@@ -42,7 +41,6 @@ class HomeController extends Controller
     public function videoWatch(Request $request){
         $href = $request->v;
         $video = Video::where('href', $href)->first();
-        // $models['video'] = $video;
         $comments = Comment::where('videoId', $video->id)
                             ->orderBy('createdAt', 'desc')
                             ->paginate(3);

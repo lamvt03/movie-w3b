@@ -16,7 +16,7 @@ class Comment extends Model
 
     const CREATED_AT = 'createdAt';
     const UPDATED_AT = 'updatedAt'; 
-
+  
     public function createdBy(){
         return $this->belongsTo('App\User', 'userId');
     }
