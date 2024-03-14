@@ -4,14 +4,13 @@
 
 @section('content')
 <!-- Breadcrumb Begin -->
-
 <div id="breadcrumb" class="breadcrumb-option">
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
                 <div class="breadcrumb__links">
                     <a href="{{ route('home') }}"><i class="fa-solid fa-house"></i> Trang chủ</a> 
-                    <a href="${initParam['mvcPath']}/categories">{{ $video->category->name }}</a> <span>{{ $video->title }}</span>
+                    <a href="{{ route('video.category', ['code' => $video->category->code]) }}">{{ $video->category->name }}</a> <span>{{ $video->title }}</span>
                 </div>
             </div>
         </div>
@@ -35,8 +34,7 @@
                     <div class="section-title">
                         <h5 class="mb-6">Bình luận</h5>
                     </div>
-                    
-                    <div id="review-container">
+                    <div class="review-container">
                         @foreach ($comments as $comment )
                         <div class="anime__review__item">
                             <div class="anime__review__item__pic">
@@ -49,16 +47,17 @@
                                 @endphp
                                 <h6>
                                     {{ $comment->createdBy->fullname }} - <span>{{ $carbonDate->diffForHumans() }}</span>
-
                                 </h6>
                                 <p>{{ $comment->content }}</p>
                             </div>
                         </div>
                         @endforeach
                     </div>
-                    <div class="float-right">
-                        <span id="showMoreBtn">Hiển thị thêm bình luận <i class="fa-solid fa-angle-down"></i></span>
-                    </div>
+                        @if ($comments->lastPage() > 1)
+                        <div class="float-right">
+                            <span class="showMoreBtn">Hiển thị thêm bình luận <i class="fa-solid fa-angle-down"></i></span>
+                        </div>
+                        @endif
                     @endif
                 </div>
 
@@ -70,8 +69,7 @@
                     <form id="voteFrm" action="{{ route('video.comment') }}" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <textarea id="voteInp" placeholder="Nội dung..." name="content" required></textarea>
-                        <input id="href" name="href" type="hidden" value="{{ $video->href }}">
-
+                        <input class="href" name="href" type="hidden" value="{{ $video->href }}">
                         @auth
                         <button id="voteFrmBtn" type="submit">
                             <i class="fa fa-location-arrow"></i> Gửi Bình Luận
@@ -124,68 +122,8 @@
     })
     }
 </script>
-<script type="text/javascript">
-const timeAgo = timestamp => {
-    const timezoneOffsetMilliseconds = 7 * 60 * 60 * 1000;
-    const seconds = Math.floor((new Date() - new Date(timestamp) - timezoneOffsetMilliseconds) / 1000);
-    const intervals = {
-        'năm': 31536000,
-        'tháng': 2592000,
-        'tuần': 604800,
-        'ngày': 86400,
-        'giờ': 3600,
-        'phút': 60,
-        'giây': 1
-    };
+<script type="text/javascript" src="{{asset('js/showMoreComment.js')}}"></script>
+@endsection
 
-    for (let key in intervals) {
-        const interval = Math.floor(seconds / intervals[key]);
-        if (interval >= 1) {
-            return interval + " " + key + " trước";
-        } 
-    }
-    return "Vừa xong";
-}
-</script>
-<script type="text/javascript">
-    const loadingContainer = document.querySelector('.loading-container');
-    const APP_URL = '{{ env('APP_URL') }}';
-    const showMoreBtn = document.querySelector('#showMoreBtn');
-    let page = 1;
-    showMoreBtn.onclick = () => {
-        page++;
-        loadingContainer.classList.remove('invisible');
-        const href = document.querySelector('#href').value;
-        fetch(`${APP_URL}/api/comment/list?v=${href}&page=${page}`, {
-            method: 'GET',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-        })
-        .then(response => response.json())
-        .then(response => {
-            loadingContainer.classList.add('invisible');
-            if(page === response.last_page){
-                showMoreBtn.classList.add('invisible');
-            }
-            const html = response.data.map(item => `
-                <div class="anime__review__item">
-                    <div class="anime__review__item__pic">
-                        <img src="${APP_URL}/img/default-avt.jpg" alt="" />
-                    </div>
-                    <div class="anime__review__item__text">
-                        <h6>
-                            ${item.fullname} - <span>${timeAgo(item.createdAt)}</span>
-                        </h6>
-                        <p>${item.content}</p>
-                    </div>
-                </div>
-            `).join('\n');
-            const container = document.querySelector('#review-container');
-            container.innerHTML += html;
-        })
-        .catch(error => {
-            console.error('Error:', error);
-        });
-    }
-</script>
+
+

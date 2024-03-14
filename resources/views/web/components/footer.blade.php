@@ -65,6 +65,9 @@
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 <script src="{{ asset('js/validateUser.js') }}"></script>
+<script type="text/javascript">
+    const APP_URL = '{{ env('APP_URL') }}';
+</script>
 
 <!--Thong bao dang nhap thanh cong/That bai-->
 @if(Session('error'))

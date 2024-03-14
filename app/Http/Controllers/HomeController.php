@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Order;
 use App\Models\Video;
@@ -25,6 +26,10 @@ class HomeController extends Controller
         $href = $request->v;
         $video = Video::where('href', $href)->first();
         $models['video'] = $video;
+        $comments = Comment::where('videoId', $video->id)
+                            ->orderBy('createdAt', 'desc')
+                            ->paginate(3);
+        $models['comments'] = $comments;
         if(Auth::check()){
             $user = Auth::user();
             $order = Order::where('userId', $user->id)
@@ -50,6 +55,20 @@ class HomeController extends Controller
         ]);
     }
 
+    public function videoCategory(Request $request){
+        $code = $request->code;
+        $category = Category::where('code', $code)->first();
+        $videos = Video::join('categories', 'videos.categoryId', '=', 'categories.id')
+                        ->select('videos.*')
+                        ->where('categories.code', $code)
+                        ->orderBy('videos.createdAt', 'desc')
+                        ->paginate(12);
+        return view('web.video-category')->with([
+            'category' => $category,
+            'videos' => $videos
+        ]);
+    }
+  
     public function search(Request $request){
         $videos = Video::join('categories', 'videos.categoryId', '=', 'categories.id')
                         ->select('videos.*')

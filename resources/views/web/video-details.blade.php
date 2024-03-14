@@ -10,7 +10,7 @@
             <div class="col-lg-12">
                 <div class="breadcrumb__links">
                     <a href="{{ route('home') }}"><i class="fa fa-home"></i> Trang chủ</a> <a
-                        href="${initParam['mvcPath']}/categories">Thể Loại</a> <span>Thông Tin Phim</span>
+                        href="{{ route('video.category', ['code' => $video->category->code]) }}">{{ $video->category->name }}</a> <span>{{ $video->title }}</span>
                 </div>
             </div>
         </div>
@@ -60,7 +60,7 @@
                                                     ${checkedAttribute2}> <label for="rating-2"></label>
                                                 <input type="radio" name="rating" id="rating-1" value="1"
                                                     ${checkedAttribute1}> <label for="rating-1"></label>
-                                                <input id="videoIdHidden" name="href" type="hidden"
+                                                <input id="videoIdHidden" class="href" name="href" type="hidden"
                                                        value="{{ $video->href }}">
                                             </div>
                                         </div>
@@ -140,12 +140,13 @@
         <div class="row">
             <div class="col-lg-8 col-md-8">
                 <div class="anime__details__review">
-                    @if (count($video->comments) > 0)
+                    @if (count($comments) > 0)
                     <div class="section-title">
-                        <h5 class="mb-6">Bình luận</h5>
+                        <h5 class="mb-6">Đánh giá</h5>
                     </div>
 
-                    @foreach ($video->comments as $comment )
+                    <div class="review-container">
+                        @foreach ($comments as $comment )
                         <div class="anime__review__item">
                             <div class="anime__review__item__pic">
                                 <img src="{{ asset('img/default-avt.jpg') }}"
@@ -163,6 +164,12 @@
                             </div>
                         </div>
                     @endforeach
+                    </div>
+                        @if ($comments->lastPage() > 1)
+                        <div class="float-right">
+                            <span class="showMoreBtn">Hiển thị thêm bình luận <i class="fa-solid fa-angle-down"></i></span>
+                        </div>
+                        @endif
                     @endif
 
                 </div>
@@ -173,4 +180,8 @@
     </div>
 </section>
 <!-- Anime Section End -->
+@endsection
+
+@section('additional-scripts')
+<script type="text/javascript" src="{{asset('js/showMoreComment.js')}}"></script>
 @endsection

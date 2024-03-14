@@ -1,6 +1,6 @@
 @extends('layouts.web')
 
-@section('title', 'Movie W3b - Tìm kiếm')
+@section('title', 'Movie W3b - '.$category->name)
 
 @section('content')
 <section class="product">
@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-lg-8 col-md-8 col-sm-8">
                             <div class="section-title">
-                                <h4>KẾT QUẢ TÌM KIẾM</h4>
+                                <h4>{{ $category->name }}</h4>
                             </div>
                         </div>
                     </div>
@@ -30,7 +30,7 @@
                                             <i class="fa-solid fa-comment"></i> {{ count($video->comments) }}
                                         </div>
                                         <div class="view">
-                                            <i class="fa fa-eye"></i> {{ $video->view}}
+                                            <i class="fa fa-eye"></i> {{ $video->view }}
                                         </div>
                                     </div>
                                 </a>
