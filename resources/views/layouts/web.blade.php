@@ -18,7 +18,7 @@
     </main>
     
     @include('web.components.footer')
-    
+    @yield('additional-scripts')
 </body>
 
 </html>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Comment;
 use App\Models\Order;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -40,8 +41,13 @@ class HomeController extends Controller
     public function videoWatch(Request $request){
         $href = $request->v;
         $video = Video::where('href', $href)->first();
-        // $models['video'] = $video;
-        return view('web.video-watch')->with(['video' => $video]);
+        $comments = Comment::where('videoId', $video->id)
+                            ->orderBy('createdAt', 'desc')
+                            ->paginate(3);
+        return view('web.video-watch')->with([
+            'video' => $video,
+            'comments' => $comments
+        ]);
     }
 
     public function search(Request $request){
@@ -52,6 +58,19 @@ class HomeController extends Controller
         return view('web.search')->with(['videos' => $videos]);
     }
 
+    public function videoComment(Request $request){
+        $href = $request->href;
+        $content = $request->content;
+        $video = Video::where('href', $href)->first();
+        $user = Auth::user();
+        
+        Comment::create([
+            'videoId' => $video->id,
+            'userId' => $user->id,
+            'content' => $content,
+        ]);
+        return redirect()->route('video.watch', ['v' => $href]);
+    }
     public function about(){
         return view('web.about');
     }
