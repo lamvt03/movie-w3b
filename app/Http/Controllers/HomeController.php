@@ -10,7 +10,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 
-
 class HomeController extends Controller
 {
     public function index() {
@@ -69,7 +68,7 @@ class HomeController extends Controller
             'videos' => $videos
         ]);
     }
-
+  
     public function search(Request $request){
         $videos = Video::join('categories', 'videos.categoryId', '=', 'categories.id')
                         ->select('videos.*')
