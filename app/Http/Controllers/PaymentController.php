@@ -15,7 +15,7 @@ class PaymentController extends Controller
         $now = now(config('constants.DEFAULT_ZONE'));
         $vnp_CreateDate = $now->format('YmdHis');
         $vnp_ExpireDate = $now->addMinutes(15)->format('YmdHis');
-        $vnp_TxnRef = rand(10000,100000);
+        $vnp_TxnRef = $this->generateRandomNumberString(8);
 
         $returnUrl = config('vnp.vnp_ReturnUrl') . '?v=' . $href;
 
@@ -28,7 +28,7 @@ class PaymentController extends Controller
             "vnp_CurrCode" => "VND",
             "vnp_IpAddr" => $request->ip(),
             "vnp_Locale" => 'vn',
-            "vnp_OrderInfo" => "Thanh toan GD: " . $vnp_TxnRef,
+            "vnp_OrderInfo" => "Thanh toan don hang: " . $vnp_TxnRef,
             "vnp_OrderType" => "other",
             "vnp_ReturnUrl" => $returnUrl,
             "vnp_TxnRef" => $vnp_TxnRef,
@@ -68,6 +68,7 @@ class PaymentController extends Controller
         $vnp_BankCode = $request->vnp_BankCode;
         $vnp_TransactionNo = $request->vnp_TransactionNo;
 
+        $price = intval($vnp_Amount)/100;
         $video = Video::where('href', $href)->first();
         $user = $request->user();
 
@@ -76,7 +77,7 @@ class PaymentController extends Controller
             'vnp_OrderInfo' => $vnp_OrderInfo,
             'vnp_PayDate' => $vnp_PayDate,
             'vnp_ResponseCode' => $vnp_ResponseCode,
-            'vnp_Amount' => $vnp_Amount,
+            'vnp_Amount' => $price,
             'vnp_BankCode' => $vnp_BankCode,
             'vnp_TransactionNo' => $vnp_TransactionNo,
             'userId' => $user->id,
@@ -85,5 +86,16 @@ class PaymentController extends Controller
         return redirect()->route('video.details', ['v' => $href])->with([
             'paySuccess' => true
         ]);        
+    }
+
+    public function generateRandomNumberString($length) {
+        $characters = '0123456789';
+        $randomString = '';
+    
+        for ($i = 0; $i < $length; $i++) {
+            $randomString .= $characters[rand(0, strlen($characters) - 1)];
+        }
+    
+        return $randomString;
     }
 }
