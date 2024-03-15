@@ -22,7 +22,7 @@ class VideoAPI extends Controller
         return $comments;
     }
 
-    public function Like(Request $request){
+    public function like(Request $request){
         $href = $request->v;
         $video = Video::where('href', $href)
                         ->first();

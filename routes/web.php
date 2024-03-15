@@ -29,7 +29,7 @@ Route::group(['prefix' => 'video'], function(){
 
 Route::group(['prefix' => 'api/video'], function(){
     Route::get('commentList', 'API\VideoAPI@commentList');
-    Route::get('like', 'API\VideoAPI@Like');
+    Route::get('like', 'API\VideoAPI@like');
 });
 
 Route::group(['prefix' => 'payment'], function(){
