@@ -69,6 +69,7 @@ class PaymentController extends Controller
         $vnp_TransactionNo = $request->vnp_TransactionNo;
 
         $price = intval($vnp_Amount)/100;
+
         $video = Video::where('href', $href)->first();
         $user = $request->user();
 
@@ -87,7 +88,7 @@ class PaymentController extends Controller
             'paySuccess' => true
         ]);        
     }
-
+  
     public function generateRandomNumberString($length) {
         $characters = '0123456789';
         $randomString = '';

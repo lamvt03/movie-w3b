@@ -1,4 +1,9 @@
 <?php
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\AuthController;
+use App\Http\Controllers\Auth\ResetPasswordController;
+use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,15 +15,23 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
-Route::get('/register','AuthController@showFormRegister')->name('showFormRegister');
-Route::post('/register','AuthController@register')->name('register');
-Route::get('/login','AuthController@showFormLogin')->name('showFormLogin');
-Route::post('/login','AuthController@login')->name('login');
-Route::get('logout','AuthController@logout')->name('logout');
 Route::get('/search', 'HomeController@search')->name('search');
+Route::get('/register',[AuthController::class,'showFormRegister'])->name('showFormRegister');
+Route::post('/register',[AuthController::class,'register'])->name('register');
+Route::get('/login',[AuthController::class,'showFormLogin'])->name('showFormLogin');
+Route::post('/login',[AuthController::class,'login'])->name('login');
+Route::get('/logout',[AuthController::class,'logout'])->name('logout');
+Route::get('/forgot-password',[ForgotPasswordController::class,'showForgotPassPage'])->name('showForgotPassPage');
+Route::post('/forgot-password',[ForgotPasswordController::class,'checkExistedEmail'])->name('checkExistedEmail');
+Route::get('/forgot-password/enter-otp',[ForgotPasswordController::class,'showEnterOTPPage'])->name('showEnterOTPPage');
+Route::post('/forgot-password/sending-otp',[ForgotPasswordController::class,'sendOtp'])->name('sendOtp');
+Route::post('/forgot-password/enter-otp',[ForgotPasswordController::class,'verifiedOtp'])->name('verifiedOtp');
+Route::get('/forgot-password/new-password',[ResetPasswordController::class,'showNewPassPage'])->name('showNewPassPage');
+Route::post('/forgot-password/new-password',[ResetPasswordController::class,'setNewPass'])->name('setNewPass');
+Route::get('user/activation/{token}', [AuthController::class,'activateUser'])->name('user.activate');
+Route::get('/verify-success',[VerificationController::class,'showSuccess'])->name('verify-success');
 
 Route::group(['prefix' => 'video'], function(){
     Route::get('details', 'HomeController@videoDetails')->name('video.details');
@@ -37,3 +50,7 @@ Route::group(['prefix' => 'payment'], function(){
     Route::get('vnp/return', 'PaymentController@vnpReturn');
 });
 
+Route::group(['prefix' => 'payment'], function(){
+    Route::get('vnp', 'PaymentController@getVnpPage');
+    Route::get('vnp/return', 'PaymentController@vnpReturn');
+});
