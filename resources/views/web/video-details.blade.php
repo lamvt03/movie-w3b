@@ -95,32 +95,22 @@
                                 data-target="#exampleModal">
                                 <i class="fa-regular fa-share-from-square"></i> Chia sẻ
                             </button>
+                            
                             @endauth
 
                             @if ($video->price == 0)
                             <a href="{{ route('video.watch', ['v' => $video->href]) }}" class="watch-btn"><span>Xem
                                     ngay</span> <i class="fa fa-angle-right"></i></a>
                             @else
+                                @if (($order ?? null) && $order->vnp_ResponseCode == '00')
+                                <a href="{{ route('video.watch', ['v' => $video->href]) }}" class="watch-btn"><span>Xem
+                                        ngay</span> <i class="fa fa-angle-right"></i></a>
 
-                            @if (($order ?? null) && $order->vnp_ResponseCode == '00')
-                            <a href="{{ route('video.watch', ['v' => $video->href]) }}" class="watch-btn"><span>Xem
-                                    ngay</span> <i class="fa fa-angle-right"></i></a>
-
-                            @else
-                            @guest
-
-                            <a onclick="clickConfirmPayment()" style="cursor: pointer;" class="watch-btn"><span>{{
-                                    number_format($video->price, 0, ',', '.') .
-                                    '₫' }}</span> <i class="fa fa-angle-right"></i></a>
-
-                            @else
-                            <a class="watch-btn" id="clickBeforeLogin" style="cursor: pointer;"> <span>{{
-                                    number_format($video->price, 0, ',', '.') .
-                                    '₫' }}</span>
-                                <i class="fa fa-angle-right"></i>
-                            </a>
-                            @endguest
-                            @endif
+                                @else
+                                <a style="cursor: pointer;" class="payBtn watch-btn"><span>{{
+                                        number_format($video->price, 0, ',', '.') .
+                                        '₫' }}</span> <i class="fa fa-angle-right"></i></a>
+                                @endif
                             @endif
                         </div>
                     </div>
@@ -194,4 +184,60 @@
         })
 }
 </script>
+
+@guest
+<script type="text/javascript">
+    const payBtn = document.querySelector('.payBtn');
+    payBtn.onclick = () => {
+        Swal.fire({
+            title: 'Thông báo',
+            text: "Vui lòng đăng nhập trước khi thanh toán",
+            icon: 'warning',
+            showCancelButton: true,
+            showCloseButton: true,
+            confirmButtonColor: '#27ae60',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                window.location.href = "/login";
+            }
+        })
+    }
+</script>
+@else
+<script type="text/javascript">
+    const payBtn = document.querySelector('.payBtn');
+    payBtn.onclick = () => {
+        Swal.fire({
+            title: 'Xác nhận',
+            text: "Bạn có chắc chắn muốn mua phim này không ?",
+            icon: 'warning',
+            showCancelButton: true,
+            showCloseButton: true,
+            confirmButtonColor: '#27ae60',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                const href = document.querySelector('.href').value;
+                window.location.href = `/payment/vnp?v=${href}`; 
+            }
+        })
+    }
+</script>
+@endguest
+
+@if (session('paySuccess') ?? '')
+<script type="text/javascript">
+Swal.fire({
+    title: 'Thông báo',
+    text: "Chúc mừng bạn đã mua phim thành công!",
+    icon: 'success',
+    showCloseButton: true,
+    confirmButtonColor: '#27ae60',
+    confirmButtonText: 'OK'
+})
+</script>
+@endif
 @endsection

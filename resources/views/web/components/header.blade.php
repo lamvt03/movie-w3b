@@ -1,3 +1,8 @@
+@php
+    use App\Models\Category;
+    $categories = Category::all();
+@endphp
+
 <!-- Page Preloader -->
 <div id="preloader">
     <div class="loader"></div>
@@ -32,18 +37,9 @@
                                         class="fa-solid fa-angle-down"></i>
                                     </span></a>
                                 <ul class="dropdown">
-                                    <li><a href="#">Phim Chiếu Rạp</a></li>
-                                    <li><a href="#">Phim Việt Nam</a></li>
-                                    <li><a href="#">Phim hành động</a></li>
-                                    <li><a href="#">Phim gia đình</a></li>
-                                    <li><a href="#">Phim hài hước</a></li>
-                                    <li><a href="#">Phim kinh dị</a></li>
-                                    <li><a href="#">Phim chiến tranh</a></li>
-                                    <li><a href="#">Phim phiêu lưu</a></li>
-                                    <li><a href="#">Phim tình cảm</a></li>
-                                    <li><a href="#">Phim tâm lý</a></li>
-                                    <li><a href="#">Phim tài liệu</a></li>
-                                    <li><a href="#">Phim thần thoại</a></li>
+                                    @foreach ($categories as $category)
+                                        <li><a href="{{route('video.category', ['code' => $category->code])}}">{{ $category->name }}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
                             <li><a href="{{ route('about') }}"><i class="fa-solid fa-circle-info"></i>
