@@ -13,7 +13,7 @@
 <body>
     @include('web.components.header')
 
-    <main>
+    <main style="margin-top: 60px">
         @yield('content')
     </main>
     

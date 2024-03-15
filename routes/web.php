@@ -31,3 +31,9 @@ Route::group(['prefix' => 'api/video'], function(){
     Route::get('commentList', 'API\VideoAPI@commentList');
     Route::get('like', 'API\VideoAPI@Like');
 });
+
+Route::group(['prefix' => 'payment'], function(){
+    Route::get('vnp', 'PaymentController@getVnpPage');
+    Route::get('vnp/return', 'PaymentController@vnpReturn');
+});
+
