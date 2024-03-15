@@ -1,11 +1,16 @@
 <?php
 namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
+use App\Models\User_token;
 use App\User;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\Auth\VerificationController;
 use Session;
+use Str;
+use Mail;
 class AuthController extends Controller{
 
 
@@ -17,6 +22,12 @@ class AuthController extends Controller{
         return view('web.login');
     }
 
+
+    protected $verify;
+    public function __construct(VerificationController $verify)
+    {
+        $this->verify = $verify;
+    }
 
     public function register(Request $request){
        
@@ -34,21 +45,35 @@ class AuthController extends Controller{
             $user->email=$request->email;
             $user->phone=$request->phone;
             $user->password = bcrypt($request->password);
-            $user->isActive = 1;
             $user->save();
+            $this->verify->sendActivationMail($user);
             return redirect()->back()->with('register_success','Dang ky thanh cong');
         }
     }
 
     public function login(Request $request){
-        if(Auth::attempt(['email' => $request->email,'password' => $request->password])){
+        $user = User::where('email',$request->email)->first();
+        if(Auth::attempt(['email' => $request->email,'password' => $request->password, 'isActive' => 1])){
             return redirect()->route('home')->with('success', 'success');
+        }
+        if(Auth::attempt(['email' => $request->email,'password' => $request->password, 'isActive' => 0])){
+            Auth::logout();
+            return redirect()->back()->with('no_active', 'no_active');
         }
         return redirect()->back()->with('error','error');
     }
     
+    public function activateUser($token)
+    {
+        if ($user = $this->verify->activateUser($token)) {
+            session(['activate-success' => $user->email]);
+            return redirect()->route('verify-success');
+        }
+        abort(404);
+    }
+
     public function logout(){
         Auth::logout();
-        return redirect()->route('home');
+        return redirect()->back();
     }
 }

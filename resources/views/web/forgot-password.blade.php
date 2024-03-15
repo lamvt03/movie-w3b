@@ -10,7 +10,7 @@
             <div class="col-lg-12 text-center">
                 <div class="normal__breadcrumb__text">
                     <h2>Quên Mật Khẩu</h2>
-                    <p>Chào Mừng Bạn Đến Blog Chính Thức Của MOVIE.</p>
+                    <p>Chào Mừng Bạn Website Chính Thức Của MOVIE.</p>
                 </div>
             </div>
         </div>
@@ -45,11 +45,13 @@
             <div class="col-12 col-md-12 col-lg-12">
                 <div class="card-forgot card p-3 rounded-0" style="color: grey;">
                     <div class="step_form" style="color: grey;">
-                        <form onsubmit="return validateForgotPass()" action="${initParam['mvcPath']}/password/forgot"
+                        <form onsubmit="return validateEmail()" action="{{route('sendOtp')}}"
                               method="post">
+                              @csrf
                             <div class="mb-3">
-                                <label for="email" class="form-label">Địa chỉ email</label> <input
-                                    type="email" class="form-control" name="email" id="email">
+                                <label for="email" class="form-label">Địa chỉ email</label> 
+                                <input
+                                    class="form-control" name="email" id="email">
                                 <small id="helpId" class="form-text text-muted">Nhập
                                     địa chỉ email bạn đã đăng ký. Sau đó hệ thống sẽ gửi cho bạn
                                     một mã OTP vào email</small>
@@ -60,7 +62,7 @@
                                     class="btn btn-success rounded-0 p-2 ps-4 px-4 fw-bold text-white">
                                 TIẾP TỤC
                             </button>
-                            <a type="button" href="{{route('login')}}"
+                            <a type="button" href="{{route('showFormLogin')}}"
                                class="btn btn-danger rounded-0 p-2 ps-4 px-4 fw-bold  text-white"
                                role="button">TRỞ LẠI</a>
                         </form>
@@ -70,4 +72,5 @@
         </div>
     </div>
 </section>
+<script src="{{asset('js/validateUser.js')}}"></script>
 @endsection
