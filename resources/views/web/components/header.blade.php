@@ -28,7 +28,7 @@
                                     Trang Chủ
                                 </a>
                             </li>
-                            <li><a href=""><i class="fa-solid fa-bars"></i> Thể Loại <i
+                            <li><a class="disabled" href="#"><i class="fa-solid fa-bars"></i> Thể Loại <i
                                         class="fa-solid fa-angle-down"></i>
                                     </span></a>
                                 <ul class="dropdown">

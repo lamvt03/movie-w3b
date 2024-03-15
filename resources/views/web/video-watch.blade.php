@@ -124,4 +124,5 @@
     })
     }
 </script>
+<script src="{{ asset('js/showMoreComment.js') }}" type="text/javascript"></script>
 @endsection

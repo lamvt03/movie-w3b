@@ -27,4 +27,7 @@ Route::group(['prefix' => 'video'], function(){
     Route::get('category', 'HomeController@videoCategory')->name('video.category');
 });
 
-
+Route::group(['prefix' => 'api/video'], function(){
+    Route::get('commentList', 'API\VideoAPI@commentList');
+    Route::get('like', 'API\VideoAPI@Like');
+});

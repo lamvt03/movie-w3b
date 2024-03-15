@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\History;
 use App\Models\Order;
 use App\Models\Video;
 use Illuminate\Http\Request;
@@ -33,6 +34,20 @@ class HomeController extends Controller
         $models['comments'] = $comments;
         if(Auth::check()){
             $user = Auth::user();
+            $history = History::where('videoId', $video->id)
+                                ->where('userId', $user->id)
+                                ->first();
+            if($history){
+                $history->lastViewedAt = now(config('constants.DEFAULT_ZONE'));
+                $history->save();
+            }else{
+                $history = History::create([
+                    'userId' => $user->id,
+                    'videoId' => $video->id,
+                    'lastViewedAt' => now(config('constants.DEFAULT_ZONE')),
+                    'isLiked' => false
+                ]);
+            }
             $order = Order::where('userId', $user->id)
                 ->where('videoId', $video->id)
                 ->first();
@@ -40,7 +55,7 @@ class HomeController extends Controller
                 $models['order'] = $order;
             }
         }
-        $models['flagLikeButton'] = true;
+        $models['flagLikeButton'] = $history->isLiked ?? false;
         return view('web.video-details')->with($models);
     }
 

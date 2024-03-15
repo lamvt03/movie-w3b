@@ -13,13 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
-use App\Http\Controllers\API\CommentAPI;
-
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::group(['prefix' => 'comment'], function(){
-    Route::get('list', [CommentAPI::class, 'list']);
-});
 

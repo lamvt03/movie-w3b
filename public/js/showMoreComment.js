@@ -28,24 +28,24 @@ showMoreBtn.onclick = () => {
     page++;
     loadingContainer.classList.remove("invisible");
     const href = document.querySelector(".href").value;
-    fetch(`${APP_URL}/api/comment/list?v=${href}&page=${page}`, {
+    fetch(`/api/video/commentList?v=${href}&page=${page}`, {
         method: "GET",
         headers: {
             "Content-Type": "application/json",
         },
     })
         .then((response) => response.json())
-        .then((response) => {
+        .then((data) => {
             loadingContainer.classList.add("invisible");
-            if (page >= response.last_page) {
+            if (page >= data.last_page) {
                 showMoreBtn.classList.add("invisible");
             }
-            const html = response.data
+            const html = data.data
                 .map(
                     (item) => `
                 <div class="anime__review__item">
                     <div class="anime__review__item__pic">
-                        <img src="${APP_URL}/img/default-avt.jpg" alt="" />
+                        <img src="/img/default-avt.jpg" alt="avt" />
                     </div>
                     <div class="anime__review__item__text">
                         <h6>
