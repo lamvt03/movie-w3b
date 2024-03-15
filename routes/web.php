@@ -17,6 +17,7 @@ use App\Http\Controllers\HomeController;
 */
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
+Route::get('/search', 'HomeController@search')->name('search');
 Route::get('/register',[AuthController::class,'showFormRegister'])->name('showFormRegister');
 Route::post('/register',[AuthController::class,'register'])->name('register');
 Route::get('/login',[AuthController::class,'showFormLogin'])->name('showFormLogin');
@@ -41,7 +42,12 @@ Route::group(['prefix' => 'video'], function(){
 
 Route::group(['prefix' => 'api/video'], function(){
     Route::get('commentList', 'API\VideoAPI@commentList');
-    Route::get('like', 'API\VideoAPI@Like');
+    Route::get('like', 'API\VideoAPI@like');
+});
+
+Route::group(['prefix' => 'payment'], function(){
+    Route::get('vnp', 'PaymentController@getVnpPage');
+    Route::get('vnp/return', 'PaymentController@vnpReturn');
 });
 
 Route::group(['prefix' => 'payment'], function(){

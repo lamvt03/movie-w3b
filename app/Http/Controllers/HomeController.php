@@ -83,7 +83,6 @@ class HomeController extends Controller
             'videos' => $videos
         ]);
     }
-  
     public function search(Request $request){
         $videos = Video::join('categories', 'videos.categoryId', '=', 'categories.id')
                         ->select('videos.*')

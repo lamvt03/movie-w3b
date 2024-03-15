@@ -21,8 +21,7 @@ class VideoAPI extends Controller
                     ->paginate(3);
         return $comments;
     }
-
-    public function Like(Request $request){
+    public function like(Request $request){
         $href = $request->v;
         $video = Video::where('href', $href)
                         ->first();
