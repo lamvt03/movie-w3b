@@ -1,11 +1,11 @@
-:root{
-    --primary-color: #09090F;
-    --secondary-color: #D14A2D;
+:root {
+    --primary-color: #09090f;
+    --secondary-color: #d14a2d;
     --third-color: #333131;
     --main-background-color: #141414;
     --footer-background-color: rgba(3, 3, 11, 0.7);
     --color-2F2B2B-80: rgba(47, 43, 43, 0.8);
-    --plyr-color-main: #D14A2D;
+    --plyr-color-main: #d14a2d;
 }
 
 html,
@@ -918,7 +918,7 @@ ol {
     margin-top: 0;
     border-radius: 0;
 }
-.product__page__content{
+.product__page__content {
     width: 100%;
 }
 .product__pagination .active {
@@ -1076,14 +1076,13 @@ ol {
     background-repeat: no-repeat;
     background-position: center;
     background-size: 76%;
-    transition: .3s;
+    transition: 0.3s;
 }
 
 .rating-start > input:checked ~ label,
 .rating-start > input:checked ~ label ~ label {
     background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='126.729' height='126.73'%3e%3cpath fill='%23fcd93a' d='M121.215 44.212l-34.899-3.3c-2.2-.2-4.101-1.6-5-3.7l-12.5-30.3c-2-5-9.101-5-11.101 0l-12.4 30.3c-.8 2.1-2.8 3.5-5 3.7l-34.9 3.3c-5.2.5-7.3 7-3.4 10.5l26.3 23.1c1.7 1.5 2.4 3.7 1.9 5.9l-7.9 32.399c-1.2 5.101 4.3 9.3 8.9 6.601l29.1-17.101c1.9-1.1 4.2-1.1 6.1 0l29.101 17.101c4.6 2.699 10.1-1.4 8.899-6.601l-7.8-32.399c-.5-2.2.2-4.4 1.9-5.9l26.3-23.1c3.8-3.5 1.6-10-3.6-10.5z'/%3e%3c/svg%3e");
 }
-
 
 .rating-start > input:not(:checked) ~ label:hover,
 .rating-start > input:not(:checked) ~ label:hover ~ label {
@@ -1245,7 +1244,7 @@ ol {
 /*---------------------
   Anime Watching
 -----------------------*/
-#player{
+#player {
     border: none;
 }
 
@@ -1270,7 +1269,7 @@ ol {
 
 .anime__video__player .plyr--video .plyr__control.plyr__tab-focus,
 .anime__video__player .plyr--video .plyr__control:hover,
-.anime__video__player .plyr--video .plyr__control[aria-expanded=true] {
+.anime__video__player .plyr--video .plyr__control[aria-expanded="true"] {
     background: transparent;
 }
 
@@ -1282,11 +1281,13 @@ ol {
     color: transparent;
 }
 
-.anime__video__player .plyr--full-ui input[type=range] {
+.anime__video__player .plyr--full-ui input[type="range"] {
     color: #ffffff;
 }
 
-.anime__video__player .plyr__controls .plyr__controls__item.plyr__progress__container {
+.anime__video__player
+    .plyr__controls
+    .plyr__controls__item.plyr__progress__container {
     position: absolute;
     left: 26px;
     bottom: 45px;
@@ -1324,7 +1325,10 @@ ol {
 
 .anime__video__player .plyr__control--overlaid {
     background: transparent;
-    background: var(--plyr-video-control-background-hover, var(--plyr-color-main, var(--plyr-color-main, transparent)));
+    background: var(
+        --plyr-video-control-background-hover,
+        var(--plyr-color-main, var(--plyr-color-main, transparent))
+    );
 }
 
 .anime__video__player .plyr__control--overlaid svg {
@@ -1764,6 +1768,7 @@ ol {
 .showMoreBtn{
     color: #fff;
 }
+
 .showMoreBtn:hover{
     opacity: 0.9;
     cursor: pointer;
@@ -1846,11 +1851,13 @@ ol {
 }
 
 .login__form form .input__item {
-    position: relative;
     width: 370px;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    background-color: white;
+    padding-left: 10px;
 }
-
 
 .login__form form .input__item input {
     height: 50px;
@@ -1859,7 +1866,7 @@ ol {
     color: #b7b7b7;
     background: #ffffff;
     border: none;
-    padding-left: 16px;
+    padding-left: 10px;
 }
 
 .login__form form .input__item input::-webkit-input-placeholder {
@@ -1882,15 +1889,14 @@ ol {
     color: #b7b7b7;
 }
 
-.login__form form .input__item span {
+.login__form form .input__item i {
     color: #b7b7b7;
     font-size: 20px;
-    position: absolute;
     left: 15px;
     top: 13px;
+    padding-left: 5px;
 }
-
-.login__form form button {
+*/ .login__form form button {
     border-radius: 0;
     margin-top: 10px;
 }
@@ -2055,7 +2061,7 @@ ol {
     top: 2px;
     left: -1px;
 }
-.footer{
+.footer {
     background-color: var(--footer-background-color);
 }
 .footer__nav {
@@ -2143,7 +2149,6 @@ section .card {
     section .card {
         width: 100%;
     }
-
 }
 
 /* Tablet Device = 768px */
@@ -2281,7 +2286,6 @@ section .card {
     .img-logo-wpress img {
         width: 20%;
     }
-
 }
 
 /* Wide Mobile = 480px */
@@ -2565,39 +2569,39 @@ section .card {
 
 @keyframes wave-animation {
     0% {
-        transform: rotate(0.0deg)
+        transform: rotate(0deg);
     }
 
     10% {
-        transform: rotate(14.0deg)
+        transform: rotate(14deg);
     }
 
     20% {
-        transform: rotate(-8.0deg)
+        transform: rotate(-8deg);
     }
 
     30% {
-        transform: rotate(14.0deg)
+        transform: rotate(14deg);
     }
 
     40% {
-        transform: rotate(-4.0deg)
+        transform: rotate(-4deg);
     }
 
     50% {
-        transform: rotate(10.0deg)
+        transform: rotate(10deg);
     }
 
     60% {
-        transform: rotate(0.0deg)
+        transform: rotate(0deg);
     }
 
     100% {
-        transform: rotate(0.0deg)
+        transform: rotate(0deg);
     }
 }
-.time-ago{
+.time-ago {
     font-size: 13px;
-    color: rgba(255,255,255,0.6);
+    color: rgba(255, 255, 255, 0.6);
     margin-bottom: 12px;
 }

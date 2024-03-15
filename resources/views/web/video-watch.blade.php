@@ -34,7 +34,6 @@
                     <div class="section-title">
                         <h5 class="mb-6">Bình luận</h5>
                     </div>
-
                     <div class="review-container">
                         @foreach ($comments as $comment )
                         <div class="anime__review__item">
@@ -71,7 +70,6 @@
                         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
                         <textarea id="voteInp" placeholder="Nội dung..." name="content" required></textarea>
                         <input class="href" name="href" type="hidden" value="{{ $video->href }}">
-
                         @auth
                         <button id="voteFrmBtn" type="submit">
                             <i class="fa fa-location-arrow"></i> Gửi Bình Luận
@@ -126,3 +124,4 @@
 </script>
 <script src="{{ asset('js/showMoreComment.js') }}" type="text/javascript"></script>
 @endsection
+

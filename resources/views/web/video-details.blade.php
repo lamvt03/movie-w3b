@@ -95,7 +95,6 @@
                                 data-target="#exampleModal">
                                 <i class="fa-regular fa-share-from-square"></i> Chia sẻ
                             </button>
-
                             @endauth
 
                             @if ($video->price == 0)
@@ -122,7 +121,6 @@
                             </a>
                             @endguest
                             @endif
-
                             @endif
                         </div>
                     </div>
