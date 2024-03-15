@@ -65,6 +65,29 @@
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 <script src="{{ asset('js/validateUser.js') }}"></script>
-<script type="text/javascript">
-    const APP_URL = '{{ env('APP_URL') }}';
-</script>
+
+<!--Thong bao dang nhap thanh cong/That bai-->
+@if(Session('error'))
+    <script>
+        showSwalAlert("error", "Email hoặc mật khẩu không đúng");
+    </script>
+@elseif(Session('success')){
+    <script>
+        showSwalAlert("success", "Đăng nhập thành công");
+    </script>
+}
+@endif
+
+
+<!--Thong bao dang ky-->
+@if(Session('register_success')){
+    <script>
+        showSwalAlert("success", "Đăng ký tài khoản thành công");
+    </script>
+}
+@elseif(Session('existed_email')){
+    <script>
+        showSwalAlert("error", "Email đã được đăng ký từ trước");
+    </script>
+}
+@endif

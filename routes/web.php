@@ -1,4 +1,6 @@
 <?php
+use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\Auth\AuthController;
 
 /*
 |--------------------------------------------------------------------------
@@ -10,7 +12,6 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', 'HomeController@index')->name('home');
 Route::get('/about', 'HomeController@about')->name('about');
 Route::get('/register','AuthController@showFormRegister')->name('showFormRegister');
@@ -19,6 +20,7 @@ Route::get('/login','AuthController@showFormLogin')->name('showFormLogin');
 Route::post('/login','AuthController@login')->name('login');
 Route::get('logout','AuthController@logout')->name('logout');
 Route::get('/search', 'HomeController@search')->name('search');
+Route::get('forgot-password',[ForgotPasswordController::class,'ShowForgotPassPage'])->name('showForgotPassPage');
 
 Route::group(['prefix' => 'video'], function(){
     Route::get('details', 'HomeController@videoDetails')->name('video.details');
@@ -36,4 +38,3 @@ Route::group(['prefix' => 'payment'], function(){
     Route::get('vnp', 'PaymentController@getVnpPage');
     Route::get('vnp/return', 'PaymentController@vnpReturn');
 });
-
