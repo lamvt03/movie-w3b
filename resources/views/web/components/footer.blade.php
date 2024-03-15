@@ -69,25 +69,60 @@
 <!--Thong bao dang nhap thanh cong/That bai-->
 @if(Session('error'))
     <script>
-        showSwalAlert("error", "Email hoặc mật khẩu không đúng");
+        showSwalAlert("error", "Email hoặc mật khẩu không đúng!");
     </script>
 @elseif(Session('success')){
     <script>
-        showSwalAlert("success", "Đăng nhập thành công");
+        showSwalAlert("success", "Đăng nhập thành công.");
+    </script>
+}
+@elseif(Session('no_active')){
+    <script>
+        showSwalAlert('warning', 'Tài khoản không hoạt động !');
     </script>
 }
 @endif
 
 
-<!--Thong bao dang ky-->
+<!-- Thong bao dang ky -->
 @if(Session('register_success')){
     <script>
-        showSwalAlert("success", "Đăng ký tài khoản thành công");
+        showCenterAlert('success', 'Thành công',
+        'Một email xác minh đã gửi đến địa chỉ email của bạn');
     </script>
+
 }
 @elseif(Session('existed_email')){
     <script>
-        showSwalAlert("error", "Email đã được đăng ký từ trước");
+        showSwalAlert("error", "Email đã được đăng ký từ trước.");
     </script>
 }
 @endif
+<!--Thong bao dia chi email da hoac khong ton tai khi nhap Email quen mat khau -->
+@if(Session('not_existed_email')){
+    <script>
+        showSwalAlert("error", "Địa chỉ email chưa được đăng ký.");
+    </script>
+}
+@endif
+@if(Session('expired-otp')){
+    <script>
+        showSwalAlert("error", "Mã OTP không còn hiệu lực.");
+    </script>
+}
+@elseif(Session('wrong-otp')){
+    <script>
+        showSwalAlert("error", "Mã OTP không chính xác, vui lòng nhập lại.");
+    </script>
+}
+@elseif(Session('otp-sent')){
+    <script>
+        showSwalAlert("success", "Mã OTP đã được gửi. Vui lòng kiểm tra hộp thư.");
+    </script>
+}@endif
+@if(Session('new-pass-success')){
+      <script>
+        showCenterAlert('success', 'Thành công',
+        'Thay đổi mật khẩu thành công');
+      </script>
+    }@endif
