@@ -330,7 +330,13 @@ ol {
 -----------------------*/
 
 .header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
     background-color: var(--primary-color);
+    margin-bottom: 60px;
 }
 
 .header__logo a {
@@ -650,6 +656,10 @@ ol {
 
 .product__item {
     margin-bottom: 30px;
+    transition: .3s all;
+}
+.product__item:hover{
+    scale: 1.02;
 }
 
 .product__item__pic {

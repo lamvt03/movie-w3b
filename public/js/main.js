@@ -99,23 +99,6 @@
 
 })(jQuery);
 
-// ajax video 
-$('#likeOrUnlikeButton').click(function() {
-	const videoHref = $('#videoIdHidden').val();
-	$.ajax({
-		url: 'like?v=' + videoHref,
-		type: 'PUT'
-	}).then(function(data) {
-		if (data.isLiked){
-			$('#likeOrUnlikeButton').text('Bỏ thích');
-		}else{
-			$('#likeOrUnlikeButton').text('Thích');
-		}
-	}).fail(function(error) {
-		alert('Opp!!, Lỗi rồi ');
-	});
-});
-
 //Ajax để gửi dữ liệu đánh giá lên servlet
 function sendRatingToServlet(ratingValue) {
 	var hrefValue = document.getElementById('videoIdHidden').value;

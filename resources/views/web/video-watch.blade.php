@@ -122,8 +122,6 @@
     })
     }
 </script>
-<script type="text/javascript" src="{{asset('js/showMoreComment.js')}}"></script>
+<script src="{{ asset('js/showMoreComment.js') }}" type="text/javascript"></script>
 @endsection
-
-
 
