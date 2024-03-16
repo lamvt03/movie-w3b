@@ -19,6 +19,13 @@ class AuthController extends Controller{
     }
 
     public function showFormLogin(){
+        $urlPrevious = url()->previous();
+        $urlBase = url()->to('/');
+        
+        // Set the previous url that we came from to redirect to after successful login but only if is internal
+        if(($urlPrevious != $urlBase . '/login') && (substr($urlPrevious, 0, strlen($urlBase)) === $urlBase)) {
+            session()->put('url.intended', $urlPrevious);
+        }
         return view('web.login');
     }
 
@@ -54,7 +61,7 @@ class AuthController extends Controller{
     public function login(Request $request){
         $user = User::where('email',$request->email)->first();
         if(Auth::attempt(['email' => $request->email,'password' => $request->password, 'isActive' => 1])){
-            return redirect()->route('home')->with('success', 'success');
+            return redirect()->intended('/')->with('success', 'success');
         }
         if(Auth::attempt(['email' => $request->email,'password' => $request->password, 'isActive' => 0])){
             Auth::logout();
