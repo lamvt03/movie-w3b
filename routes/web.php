@@ -35,7 +35,7 @@ Route::get('/verify-success',[VerificationController::class,'showSuccess'])->nam
 
 Route::group(['prefix' => 'video'], function(){
     Route::get('details', 'HomeController@videoDetails')->name('video.details');
-    Route::get('watch', 'HomeController@videoWatch')->name('video.watch');
+    Route::get('watch', 'HomeController@videoWatch')->middleware('paid')->name('video.watch');
     Route::post('comment', 'HomeController@videoComment')->name('video.comment');
     Route::get('category', 'HomeController@videoCategory')->name('video.category');
 });

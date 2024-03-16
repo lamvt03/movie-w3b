@@ -118,5 +118,20 @@
         </div>
       </div>
     </section>
-    <script src="{{asset('js/validateUser.js')}}"></script>
-    @endsection
+  @endsection
+  @section('additional-scripts')
+  <script src="{{asset('js/validateUser.js')}}"></script>
+
+  @if (session('loginBeforeWatch') ?? '')
+  <script type="text/javascript">
+      Swal.fire({
+        title: 'Cảnh báo',
+        text: "Vui lòng đăng nhập trước khi thực hiện thao tác này!",
+        icon: 'warning',
+        showCloseButton: true,
+        confirmButtonColor: '#27ae60',
+        confirmButtonText: 'OK'
+      })
+  </script>
+  @endif
+  @endsection

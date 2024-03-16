@@ -49,7 +49,7 @@
                                 <form id="ratingForm" action="${initParam['mvcPath']}/video/rating" method="post">
                                     <div class="anime__details__rating">
                                         <div class="rating-start">
-                                            <input type="radio" name="rating" id="rating-5" value="5"
+                                            {{-- <input type="radio" name="rating" id="rating-5" value="5"
                                                 ${checkedAttribute5}> <label for="rating-5"></label>
                                             <input type="radio" name="rating" id="rating-4" value="4"
                                                 ${checkedAttribute4}> <label for="rating-4"></label>
@@ -58,7 +58,7 @@
                                             <input type="radio" name="rating" id="rating-2" value="2"
                                                 ${checkedAttribute2}> <label for="rating-2"></label>
                                             <input type="radio" name="rating" id="rating-1" value="1"
-                                                ${checkedAttribute1}> <label for="rating-1"></label>
+                                                ${checkedAttribute1}> <label for="rating-1"></label> --}}
                                             <input class="href" name="href" type="hidden" value="{{ $video->href }}">
                                         </div>
                                     </div>
@@ -240,4 +240,17 @@ Swal.fire({
 })
 </script>
 @endif
+
+@if (session('payBeforeWatch') ?? '')
+  <script type="text/javascript">
+      Swal.fire({
+        title: 'Thông báo',
+        text: "Bạn chưa mua phim này!",
+        icon: 'info',
+        showCloseButton: true,
+        confirmButtonColor: '#27ae60',
+        confirmButtonText: 'OK'
+      })
+  </script>
+  @endif
 @endsection
