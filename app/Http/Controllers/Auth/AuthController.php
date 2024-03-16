@@ -23,7 +23,7 @@ class AuthController extends Controller{
         $urlBase = url()->to('/');
         
         // Set the previous url that we came from to redirect to after successful login but only if is internal
-        if(($urlPrevious != $urlBase . '/login') && (substr($urlPrevious, 0, strlen($urlBase)) === $urlBase)) {
+        if(($urlPrevious != $urlBase . '/login') && (substr($urlPrevious, 0, strlen($urlBase)) === $urlBase) && ($urlPrevious != $urlBase . '/verify-success')) {
             session()->put('url.intended', $urlPrevious);
         }
         return view('web.login');

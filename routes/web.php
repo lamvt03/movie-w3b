@@ -3,6 +3,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
+use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -32,7 +33,7 @@ Route::get('/forgot-password/new-password',[ResetPasswordController::class,'show
 Route::post('/forgot-password/new-password',[ResetPasswordController::class,'setNewPass'])->name('setNewPass');
 Route::get('user/activation/{token}', [AuthController::class,'activateUser'])->name('user.activate');
 Route::get('/verify-success',[VerificationController::class,'showSuccess'])->name('verify-success');
-
+Route::get('/transaction',[TransactionController::class,'showTransaction'])->name('transaction');
 Route::group(['prefix' => 'video'], function(){
     Route::get('details', 'HomeController@videoDetails')->name('video.details');
     Route::get('watch', 'HomeController@videoWatch')->name('video.watch');
