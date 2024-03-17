@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\Models\Order;
 use Illuminate\Support\Facades\Auth;
-class TransactionController extends Controller
+class UserController extends Controller
 {
     //
     public function showTransaction(){
