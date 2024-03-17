@@ -22,7 +22,6 @@ Route::get('/register',[AuthController::class,'showFormRegister'])->name('showFo
 Route::post('/register',[AuthController::class,'register'])->name('register');
 Route::get('/login',[AuthController::class,'showFormLogin'])->name('showFormLogin');
 Route::post('/login',[AuthController::class,'login'])->name('login');
-Route::get('/logout',[AuthController::class,'logout'])->name('logout');
 Route::get('/forgot-password',[ForgotPasswordController::class,'showForgotPassPage'])->name('showForgotPassPage');
 Route::post('/forgot-password',[ForgotPasswordController::class,'checkExistedEmail'])->name('checkExistedEmail');
 Route::get('/forgot-password/enter-otp',[ForgotPasswordController::class,'showEnterOTPPage'])->name('showEnterOTPPage');
@@ -50,6 +49,7 @@ Route::group(['prefix' => 'payment'], function(){
 });
 
 Route::group(['middleware' => 'auth'], function() {
+    Route::get('/logout',[AuthController::class,'logout'])->name('logout');
     Route::get('/transaction',[UserController::class,'showTransaction'])->name('transaction');
 });
 
