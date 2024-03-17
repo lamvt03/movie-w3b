@@ -51,6 +51,12 @@ Route::group(['prefix' => 'payment'], function(){
 Route::group(['middleware' => 'auth'], function() {
     Route::get('/logout',[AuthController::class,'logout'])->name('logout');
     Route::get('/transaction',[UserController::class,'showTransaction'])->name('transaction');
+    Route::get('/profile', 'UserController@showProfile')->name('showProfile');
+    Route::get('/editprofile', 'UserController@showFrmProfile')->name('showFrmProfile');
+    Route::get('/changepass', 'UserController@showFrmChangePass')->name('showFrmChangePass');
+    Route::post('/changepass', 'UserController@changePass')->name('changePass');
+    Route::post('/update-profile', 'UserController@editProfile')->name('updateProfile');
+    Route::get('/favorites', 'UserController@showFavorites')->name('favorites');
 });
 
 

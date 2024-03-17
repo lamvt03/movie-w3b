@@ -43,5 +43,47 @@ class UserController extends Controller
             'index' => $index,
         ]);
     }
+
+    
+    public function showProfile(){
+        return view('profile.profile');
+    }
+
+    public function showFrmProfile(){
+        return view('profile.editProfile');
+    }
+
+    public function showFrmChangePass(){
+        return view('profile.changePass');
+    }
+
+    public function changePass(Request $request){
+        //Lấy thông tin về người dùng hiện tại đã đăng nhập
+        $user = $request->user();
+
+        if($user->password != $request->oldPass){
+
+        }
+        //Cập nhật mật khẩu mới
+        $user->password = bcrypt($request->newPass);
+        $user->save();
+        return redirect()->route('showProfile')->with('change_success', 'Thay đổi mật khẩu thành công.');
+        
+    }
+
+    // Phương thức để xử lý việc cập nhật thông tin người dùng
+    public function editProfile(Request $request)
+    {
+        
+        // Lấy thông tin về người dùng hiện tại đã đăng nhập
+        $user = $request->user();
+            // Cập nhật thông tin người dùng
+            $user->fullname = $request->fullname;
+            $user->phone = $request->phone;
+            $user->save(); // Lưu lại các thay đổi vào cơ sở dữ liệu
+
+            return redirect()->route('showProfile')->with('update_success', 'Cập nhật thông tin thành công.');
+        
+    }
     
 }
