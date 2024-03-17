@@ -6,7 +6,15 @@ use Illuminate\Database\Eloquent\Model;
 
 class Category extends Model
 {
-    public function videos(){
-        return $this->hasMany(Video::class, 'categoryId');
+
+    protected $fillable = [
+        'code', 'name', 'createdAt'
+    ];
+
+    protected $table = 'categories';
+
+    public function videos()
+    {
+        return $this->hasMany(Video::class, 'category_id');
     }
 }
