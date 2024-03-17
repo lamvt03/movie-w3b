@@ -53,10 +53,10 @@
 	/*------------------
 		Navigation
 	--------------------*/
-	$(".mobile-menu").slicknav({
-		prependTo: '#mobile-menu-wrap',
-		allowParentLinks: true
-	});
+	// $(".mobile-menu").slicknav({
+	// 	prependTo: '#mobile-menu-wrap',
+	// 	allowParentLinks: true
+	// });
 
 	/*------------------
 		Hero Slider
@@ -68,10 +68,10 @@
 		items: 1,
 		dots: true,
 		nav: true,
-		navText: ["<span class='arrow_carrot-left'></span>", "<span class='arrow_carrot-right'></span>"],
+		navText: ["<i class='fa-solid fa-angle-left' style='transform: rotate(-45deg)'></i>", "<i class='fa-solid fa-angle-right' style='transform: rotate(-45deg)'></i>"],
 		animateOut: 'fadeOut',
 		animateIn: 'fadeIn',
-		smartSpeed: 1200,
+		smartSpeed: 1500,
 		autoHeight: false,
 		autoplay: true,
 		mouseDrag: false
@@ -81,14 +81,13 @@
 		Video Player
 	--------------------*/
 	const player = new Plyr('#player', {
-		controls: ['play-large', 'play', 'progress', 'current-time', 'mute', 'captions', 'settings', 'fullscreen'],
-		seekTime: 25
+		seekTime: 15
 	});
 
 	/*------------------
 		Niceselect
 	--------------------*/
-	$('select').niceSelect();
+	// $('select').niceSelect();
 
 	/*------------------
 		Scroll To Top
@@ -99,23 +98,6 @@
 	});
 
 })(jQuery);
-
-// ajax video 
-$('#likeOrUnlikeButton').click(function() {
-	const videoHref = $('#videoIdHidden').val();
-	$.ajax({
-		url: 'like?v=' + videoHref,
-		type: 'PUT'
-	}).then(function(data) {
-		if (data.isLiked){
-			$('#likeOrUnlikeButton').text('Bỏ thích');
-		}else{
-			$('#likeOrUnlikeButton').text('Thích');
-		}
-	}).fail(function(error) {
-		alert('Opp!!, Lỗi rồi ');
-	});
-});
 
 //Ajax để gửi dữ liệu đánh giá lên servlet
 function sendRatingToServlet(ratingValue) {

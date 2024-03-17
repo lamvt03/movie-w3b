@@ -135,10 +135,10 @@ DROP TABLE IF EXISTS `migrations`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=65 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,9 +191,11 @@ DROP TABLE IF EXISTS `password_resets`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `password_resets` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
   KEY `password_resets_email_index` (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -312,6 +314,7 @@ CREATE TABLE `users` (
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
 INSERT INTO `users` VALUES (1,'admin','Võ Trường Lâm',1,'$2y$10$f0XCrwJGocp46v9uTAQ03u8cKwHh3X0EmLetNw02jswUIpG98f6va','0123456789',NULL,1),(2,'CT06N0129@actvn.edu.v','Võ Trường Lâm',1,'$2y$10$yYnHP0WLqv9D8UDHtF.HBeoqMZBuuv2m/o6iu/8Uuiy02Iphxkv5u','0886338217',NULL,2),(3,'CT06N0118@actvn.edu.v','Lê Thanh Giác',1,'$2y$10$LwNQTPvqLqbBWqJKzKyMa.K3euo8Wlk9inXQLMlziMt0dUtHkM9Ui','0357006252',NULL,2),(4,'CT06N0104@actvn.edu.v','Nguyễn Thanh Bảo',1,'$2y$10$5y.FFudaP.Co.X8ddbCEP.mQErl7LiqSU57UnnNiZKzXQ34eSpmUy','0843175549',NULL,2),(5,'CT06N0102@actvn.edu.v','Phạm Phú An',1,'$2y$10$u1D8Gxlx4V8G0u6CU2sYi.1t6ghO2TTp7tsZCTL3WLiJP1mTRyiS.','0706342549',NULL,2),(6,'CT06N0139@actvn.edu.v','Bùi Trọng Nghĩa',1,'$2y$10$LwNQTPvqLqbBWqJKzKyMa.K3euo8Wlk9inXQLMlziMt0dUtHkM9Ui','0973142448',NULL,2),(7,'CT06N0110@actvn.edu.v','Vũ Tiến Đạt',1,'$2y$10$u1D8Gxlx4V8G0u6CU2sYi.1t6ghO2TTp7tsZCTL3WLiJP1mTRyiS.','0898993601',NULL,2),(8,'CT06N0119@actvn.edu.v','Huỳnh Chí Giáp',1,'$2y$10$u1zaW6x1eVRTOyZBhAVrJeNFfeO/wlqZLgTRr5gLRPB46W4h2Kg3C','0783977379',NULL,2),(9,'CT06N0125@actvn.edu.v','Hà Minh Khánh',1,'$2y$10$U.osFO3tCBfJ5rouFa8tzu/HY1YWfySGwihf5kyDHhuXgDL6sduJ.','0899150148',NULL,2),(10,'CT06N0132@actvn.edu.v','Đỗ Hoàng Long',1,'$2y$10$uL5b0HC7U3tipVfxlblB4eLDVbpbRSQ/Cl2B.682JtnJ1yhdWl.cm','0962649157',NULL,2),(11,'CT06N0133@actvn.edu.v','Ngô Duy Thành Long',1,'$2y$10$adbpSRIi4l6ZWdne8Er9x.5AJe5BA23TgWKxM57A68btP5KmEtuXW','0944214042',NULL,2),(12,'CT06N0137@actvn.edu.v','Lê Trọng Nghĩa',1,'$2y$10$6MKxyRLwo1z8nnSO9BABZedGY1LJTBgI8m67gMeJkIgRvLTIUnclq','0774849173',NULL,2);
+
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -359,5 +362,6 @@ UNLOCK TABLES;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
 
 -- Dump completed on 2024-03-01 21:19:39

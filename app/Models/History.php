@@ -15,9 +15,10 @@ class History extends Model
         'userId',
         'videoId',
     ];
-
-    // Khai báo các trường không nên trả về khi tìm kiếm
-    protected $hidden = [];
+  
+    public $hidden = [
+        'id', 'userId', 'videoId'
+    ];
 
     // Định nghĩa quan hệ một-nhiều với model User
     public function user()
@@ -30,4 +31,6 @@ class History extends Model
     {
         return $this->belongsTo(Video::class, 'videoId');
     }
+
+    public $timestamps = FALSE;
 }

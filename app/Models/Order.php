@@ -9,6 +9,20 @@ use App\User;
 class Order extends Model
 {
     protected $table = 'orders';
+  
+    protected $fillable = [
+          'vnp_TxnRef',
+          'vnp_OrderInfo',
+          'vnp_PayDate',
+          'vnp_ResponseCode',
+          'vnp_Amount',
+          'vnp_BankCode',
+          'vnp_TransactionNo',
+          'userId',
+          'videoId'
+      ];
+
+    public $timestamps = false;
     
     public function user()
     {
