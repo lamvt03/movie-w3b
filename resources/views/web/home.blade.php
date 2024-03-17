@@ -47,7 +47,7 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="btn__all m-0">
-                                <a href="${initParam['mvcPath']}/category" class="primary-btn">Xem Tất Cả <i
+                                <a href="#" class="primary-btn">Xem Tất Cả <i
                                         class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
