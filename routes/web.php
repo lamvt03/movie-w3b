@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,6 @@ Route::get('/forgot-password/new-password',[ResetPasswordController::class,'show
 Route::post('/forgot-password/new-password',[ResetPasswordController::class,'setNewPass'])->name('setNewPass');
 Route::get('user/activation/{token}', [AuthController::class,'activateUser'])->name('user.activate');
 Route::get('/verify-success',[VerificationController::class,'showSuccess'])->name('verify-success');
-
 Route::group(['prefix' => 'video'], function(){
     Route::get('details', 'HomeController@videoDetails')->name('video.details');
     Route::get('watch', 'HomeController@videoWatch')->middleware('paid')->name('video.watch');
@@ -53,4 +53,7 @@ Route::group(['prefix' => 'payment'], function(){
 Route::group(['prefix' => 'payment'], function(){
     Route::get('vnp', 'PaymentController@getVnpPage');
     Route::get('vnp/return', 'PaymentController@vnpReturn');
+});
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/transaction',[UserController::class,'showTransaction'])->name('transaction');
 });
