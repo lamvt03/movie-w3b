@@ -1,15 +1,5 @@
 <?php
 use Carbon\Carbon;
-use App\Models\Video;
-function get_currency(){
-    return '₫';
-}
-function format_money($amount, $currency=false){
-    if($currency){
-        return number_format($amount, 0, '.', '.'). ''. get_currency();
-    }
-    return number_format($amount, 0, '.', '.');
-}
 ?>
 @extends('layouts.web')
 
@@ -47,23 +37,18 @@ function format_money($amount, $currency=false){
                             </thead>
                             <tbody>
                             @foreach($data as $row)
-                            <?php 
-                                $video = Video::where('id',$row->videoId)->first();
-                                $link = $video->href;                                            
-                            ?>
                             <tr style="font-size: 14px">
                                     <td scope="row">{{$index++}}</td>
                                     <td width="130px">{{$row->vnp_TxnRef}}</td>
                                     <td width="130px"><a
                                             class="text-info fs-6 text-decoration-none font-weight-bold"
-                                            href="{{route('video.details', ['v' => $link])}}">Xem tại đây</a></td>
+                                            href="{{route('video.details', ['v' => $row->href])}}">Xem tại đây</a></td>
                                     <td>NGÂN HÀNG {{$row->vnp_BankCode}}</td>
                                     <td>
-                                        <?php
+                                    <?php
                                             $dt = Carbon::parse($row->vnp_PayDate);
                                             echo $dt->format('d/m/Y');
-                                        ?>
-                                    </td>
+                                        ?>                                    </td>
                                     <td>
                                         <?php
                                             $dt = Carbon::parse($row->vnp_PayDate);
@@ -71,9 +56,7 @@ function format_money($amount, $currency=false){
                                         ?>
                                     </td>
                                     <td>
-                                        <?php
-                                            echo format_money($row->vnp_Amount, true);
-                                        ?>
+                                        {{$row->vnp_Amount}}
                                     </td>
                                     <td width="140px"><c:choose>
                                         @if($row->vnp_ResponseCode == '00')
@@ -87,9 +70,11 @@ function format_money($amount, $currency=false){
                             </tbody>
                         </table>
                     </div>
+                    
                 </div>
             </div>
         </div>
+        {{ $data->links('vendor.pagination.custom-pagination') }}
     </div>
 </section>
 <!-- Blog Details Section End -->
