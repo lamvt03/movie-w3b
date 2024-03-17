@@ -27,6 +27,7 @@ class CreateVideosTable extends Migration
             $table->integer('view');
             $table->bigInteger('categoryId');
             $table->timestamp('createdAt');
+            $table->timestamp('updatedAt')->nullable();
         });
     }
 

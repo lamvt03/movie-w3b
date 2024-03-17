@@ -49,7 +49,7 @@
                                         <input class="form-check-input primary" type="checkbox" value="" id="flexCheckChecked"> 
                                         <label class="form-check-label text-dark" for="flexCheckChecked">Ghi nhớ đăng nhập</label>
                                     </div>
-                                    <a class="text-primary fw-bold text-decoration-none" href="{{ url('home') }}"> 
+                                    <a class="text-primary fw-bold text-decoration-none" href="{{ route('home') }}"> 
                                         <i class="fa-solid fa-arrow-left"></i>Quay về Movie W3b
                                     </a>
                                 </div>

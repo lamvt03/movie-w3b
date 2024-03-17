@@ -18,9 +18,8 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function __construct()
-{
-    $this->middleware('auth', ['except' => ['index', 'login']]);
+    public function __construct(){
+    $this->middleware(['auth', 'role:admin'], ['except' => ['index', 'login']]);
 }
 
 
@@ -137,20 +136,16 @@ class AdminController extends Controller
     // Danh sách người dùng
     public function showUserList(Request $request){
         $users = User::paginate(10);
-        $currentPage = $request->query('page', 1);
-        $maxPage = ceil($users->total() / $users->perPage());
-
-        return view('admin.user_list', compact('users', 'currentPage', 'maxPage'));
+        return view('admin.user_list', compact('users'));
     }
 
 
     // Show disabled list
     public function disabledList(Request $request){
-        $videos = Video::where('is_active', 0)->paginate(10);
-        $currentPage = $request->query('page', 1);
-        $maxPage = ceil($videos->total() / $videos->perPage());
-
-        return view('admin.disabled_videos', compact('videos', 'currentPage', 'maxPage'));
+        $videos = Video::where('isActive', 0)
+                        ->orderBy('createdAt', 'desc')
+                        ->paginate(10);
+        return view('admin.disabled_videos', compact('videos'));
     }
 
     // Khôi phục video
@@ -234,11 +229,12 @@ class AdminController extends Controller
                 'href' => 'required',
                 'director' => 'required',
                 'actor' => 'required',
-                'category_id' => 'required',
+                'categoryId' => 'required',
                 'description' => 'required',
                 'price' => 'required',
                 'poster' => 'required',
             ]);
+            
             $validatedData['share'] = 0;
             $validatedData['view'] = 0;
             // Lưu vào DB
@@ -254,10 +250,8 @@ class AdminController extends Controller
 
     // Danh sách phim
     public function showVideoList(){
-        $currentPage = 1;
-        $maxPage = 5;
-        $videos = Video::paginate(10); // Lấy danh sách video với mỗi trang có 10 video
-        return view('admin.video_list', compact('videos', 'currentPage', 'maxPage'));
+        $videos = Video::where('isActive', true)->orderBy('createdAt', 'desc')->paginate(10); // Lấy danh sách video với mỗi trang có 10 video
+        return view('admin.video_list', compact('videos'));
     }
 
 

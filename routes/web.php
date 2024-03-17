@@ -3,7 +3,6 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
 
 /*
@@ -60,8 +59,7 @@ Route::group(['middleware' => 'auth'], function() {
 
 Route::get('/admin', 'AdminController@index')->name('admin.login'); //index
 
-Route::post('/admin', 'AdminController@login')->name('login'); //login
-
+Route::post('/admin', 'AdminController@login')->name('admin.login.post'); //login
 
 Route::get('/test', 'AdminController@testDB'); //test
 

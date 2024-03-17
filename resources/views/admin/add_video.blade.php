@@ -49,12 +49,14 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="the-loai" class="form-label">Thể loại</label> 
-                                        <select class="form-select" name="category_id" id="the-loai">
-                                            <option value="1">Phim hành động</option>
-                                            <option value="2">Phim viễn tưởng</option>
-                                            <option value="3">Phim cổ trang</option>
-                                            <option value="4">Phim kinh dị</option>
-                                            <option value="5">Phim tâm lý</option>
+                                        <select class="form-select" name="categoryId" id="the-loai">
+                                            @php
+                                                use App\Models\Category;
+                                                $categories = Category::all();
+                                            @endphp
+                                            @foreach ($categories as $category)
+                                            <option value="{{$category->id}}">{{$category->name}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                     <div class="mb-3">

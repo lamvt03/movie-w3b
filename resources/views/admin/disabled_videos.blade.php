@@ -82,42 +82,7 @@
                         </div>
                     </div>
 
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            @if($currentPage == 1)
-                                <li class="page-item text-secondary disabled">
-                                    <a
-                                        class="page-link" href="#" aria-disabled="true"> <i
-                                        class="fas fa-chevron-left"></i>
-                                    </a>
-                                </li>
-                            @else
-                                <li class="page-item text-secondary"><a class="page-link"
-                                                                        href="/videos/disabled?page={{ $currentPage - 1 }}"
-                                                                        aria-disabled="true"> <i class="fas fa-chevron-left"></i>
-                                </a></li>
-                            @endif
-
-                            @for($i = 1; $i <= $maxPage; $i++)
-                                <li class="page-item text-secondary {{ $currentPage == $i ? 'active' : '' }}">
-                                    <a class="page-link"
-                                       href="/videos/disabled?page={{ $i }}">{{ $i }}</a>
-                                </li>
-                            @endfor
-
-                            @if($currentPage == $maxPage)
-                                <li class="page-item text-secondary disabled"><a
-                                        class="page-link" href="#" aria-disabled="true"> <i
-                                        class="fas fa-chevron-right"></i>
-                                </a></li>
-                            @else
-                                <li class="page-item text-secondary"><a class="page-link"
-                                                                        href="/videos/disabled?page={{ $currentPage + 1 }}"
-                                                                        aria-disabled="true"> <i class="fas fa-chevron-right"></i>
-                                </a></li>
-                            @endif
-                        </ul>
-                    </nav>
+                    <div class="d-flex justify-content-center">{{ $videos->links()}}</div>
                 </div>
             </div>
         </div>

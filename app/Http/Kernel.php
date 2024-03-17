@@ -64,6 +64,7 @@ class Kernel extends HttpKernel
 
         // my middleware 
         'paid' => \App\Http\Middleware\MoviePaid::class,
+        'role' => \App\Http\Middleware\CheckRole::class,
     ];
 
     /**

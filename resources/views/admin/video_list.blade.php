@@ -35,7 +35,6 @@
                                     </thead>
                                     <tbody>
                                     @foreach($videos as $index => $video)
-                                        @if($video->is_active == 1)
                                         <tr>
                                             <td scope="row">{{ ($videos->currentPage() - 1) * $videos->perPage() + $index + 1 }}</td>
                                             <td><img src="{{ $video->poster }}" class="img-fluid" width="250px" alt=""></td>
@@ -66,36 +65,13 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        @endif
                                     @endforeach
                                     </tbody>
                                 </table>
                             </div>
                         </div>
                     </div>
-                    <nav aria-label="Page navigation example">
-                        <ul class="pagination justify-content-center">
-                            @if($videos->currentPage() == 1)
-                                <li class="page-item text-secondary disabled"><a class="page-link" href="#" aria-disabled="true"><i class="fas fa-chevron-left"></i></a></li>
-                            @else
-                                <li class="page-item text-secondary"><a class="page-link" href="{{ $videos->previousPageUrl() }}" aria-disabled="true"><i class="fas fa-chevron-left"></i></a></li>
-                            @endif
-                            
-                            @for($page = 1; $page <= $videos->lastPage(); $page++)
-                                @if($page == $videos->currentPage())
-                                    <li class="page-item text-secondary active"><span class="page-link">{{ $page }}</span></li>
-                                @else
-                                    <li class="page-item text-secondary"><a class="page-link" href="{{ $videos->url($page) }}">{{ $page }}</a></li>
-                                @endif
-                            @endfor
-                            
-                            @if($videos->currentPage() == $videos->lastPage())
-                                <li class="page-item text-secondary disabled"><a class="page-link" href="#" aria-disabled="true"><i class="fas fa-chevron-right"></i></a></li>
-                            @else
-                                <li class="page-item text-secondary"><a class="page-link" href="{{ $videos->nextPageUrl() }}" aria-disabled="true"><i class="fas fa-chevron-right"></i></a></li>
-                            @endif
-                        </ul>
-                    </nav>
+                    <div class="d-flex justify-content-center">{{ $videos->links()}}</div>
                 </div>
             </div>
         </div>
