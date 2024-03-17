@@ -81,11 +81,6 @@ class AuthController extends Controller{
 
     public function logout(){
         Auth::logout();
-        $urlPrevious = url()->previous();
-        $urlBase = url()->to('/');
-        if(($urlPrevious != $urlBase . '/transaction')){
-            session()->put('url.intended', $urlPrevious);
-        }
-        return redirect()->intended('/');
+        return redirect()->back();
     }
 }

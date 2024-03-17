@@ -3,7 +3,7 @@ use Carbon\Carbon;
 ?>
 @extends('layouts.web')
 
-@section('title', 'Lich su giao dich')
+@section('title', 'Lịch sử giao dịch')
 
 @section('content')
 <!-- Blog Details Section Begin -->
