@@ -37,7 +37,7 @@
                                     </thead>
                                     <tbody>
                                     @foreach($videos as $index => $video)
-                                        @if($video->is_active == 0)
+                                        @if($video->isActive == 0)
                                             <tr>
                                                 <td scope="row">{{ $index + 1 }}</td>
                                                 <td><img src="{{ $video->poster }}" class="img-fluid" width="250px" alt=""></td>

@@ -51,7 +51,7 @@
                                             <td>{{ $video->director }}</td>
                                             <td width="130px">{{ $video->total_likes }}</td>
                                             <td width="155px">
-                                                @if($video->is_active)
+                                                @if($video->isActive)
                                                     Đang công chiếu
                                                 @else
                                                     Ngưng công chiếu

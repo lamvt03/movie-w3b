@@ -40,9 +40,9 @@
                                     </div>
                                     <div class="mb-3">
                                         <label for="the-loai" class="form-label">Thể loại</label>
-                                        <select class="form-select" name="category_id" id="the-loai">
+                                        <select class="form-select" name="categoryId" id="the-loai">
                                             @foreach($categories as $category)
-                                                <option value="{{ $category->id }}" {{ $category->id == $video->category_id ? 'selected' : '' }}>{{ $category->name }}</option>
+                                                <option value="{{ $category->id }}" {{ $category->id == $video->categoryId ? 'selected' : '' }}>{{ $category->name }}</option>
                                             @endforeach
                                         </select>
                                     </div>

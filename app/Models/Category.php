@@ -15,6 +15,6 @@ class Category extends Model
 
     public function videos()
     {
-        return $this->hasMany(Video::class, 'category_id');
+        return $this->hasMany(Video::class, 'categoryId');
     }
 }

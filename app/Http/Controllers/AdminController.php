@@ -87,13 +87,13 @@ class AdminController extends Controller
     // Lượt thích từng phim
     public function likedVideoList(Request $request){
         // tính số lượt thích của từng phim
-        $videos = Video::select('videos.id', 'videos.title', 'videos.director', 'videos.is_active')
+        $videos = Video::select('videos.id', 'videos.title', 'videos.director', 'videos.isActive')
                     ->selectRaw('COUNT(histories.id) AS total_likes')
                     ->leftJoin('histories', function ($join) {
                         $join->on('videos.id', '=', 'histories.videoId')
                              ->where('histories.isLiked', '=', 1);
                     })
-                    ->groupBy('videos.id', 'videos.title', 'videos.director', 'videos.is_active')
+                    ->groupBy('videos.id', 'videos.title', 'videos.director', 'videos.isActive')
                     ->orderByDesc('total_likes')
                     ->paginate(10);
 
@@ -197,7 +197,7 @@ class AdminController extends Controller
                 'href' => 'required',
                 'director' => 'required',
                 'actor' => 'required',
-                'category_id' => 'required',
+                'categoryId' => 'required',
                 'price' => 'required',
                 'description' => 'required',
             ]);
