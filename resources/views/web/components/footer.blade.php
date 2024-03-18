@@ -125,4 +125,30 @@
         showCenterAlert('success', 'Thành công',
         'Thay đổi mật khẩu thành công');
       </script>
-    }@endif
+}@endif
+<!--Thong bao thay doi thong tin -->
+@if(Session('update_success')){
+    <script>
+        showSwalAlert("success", "Thay đổi thông tin thành công");
+    </script>
+}
+@elseif(Session('update_error')){
+    <script>
+        showSwalAlert("error", "Thay đổi thông tin thất bại");
+    </script>
+}
+@endif
+
+<!--Thong bao thay doi mat khau -->
+@if(Session('change_success')){
+    <script>
+        showSwalAlert("success", "Thay đổi mật khẩu thành công");
+    </script>
+}
+@elseif(Session('change_error')){
+    <script>
+        showSwalAlert("error", "Thay đổi mật khẩu thất bại");
+    </script>
+}
+@endif
+

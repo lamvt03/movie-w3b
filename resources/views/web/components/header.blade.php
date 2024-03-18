@@ -55,7 +55,7 @@
                                     class="fa-solid fa-angle-down"></i>
                                 </a>
                                 <ul class="dropdown">
-                                    <li><a href="">Trang cá nhân</a></li>
+                                    <li><a href="{{route('showProfile')}}">Trang cá nhân</a></li>
                                     <li><a href="{{route('transaction')}}">Lịch sử giao dịch</a></li>
                                     <li><a href="{{route('logout')}}">Đăng xuất</a></li>
                                 </ul>
