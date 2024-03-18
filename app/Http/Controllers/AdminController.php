@@ -155,7 +155,7 @@ class AdminController extends Controller
 
         $video = Video::find($videoId);
         if ($video) {
-            $video->update(['is_active' => 1]);
+            $video->update(['isActive' => 1]);
         }
 
         return redirect()->back()->with('restoreVideoSuccess', true);
@@ -166,7 +166,7 @@ class AdminController extends Controller
     {
         try {
             $video = Video::findOrFail($id);
-            $video->is_active = 0;
+            $video->isActive = 0;
             $video->save();
 
             $this->debug_to_console('Xóa thành công');

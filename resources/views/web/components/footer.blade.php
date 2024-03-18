@@ -16,8 +16,8 @@
                 <div class="footer__nav">
                     <ul>
                         <li class="active"><a href="{{ route('home') }}">Trang Chủ</a></li>
-                        <li><a href="">Danh Sách Phim</a></li>
-                        <li><a href="">Liên Hệ Với Chúng Tôi</a></li>
+                        <li><a href="#">Danh Sách Phim</a></li>
+                        <li><a href="{{ route('about') }}">Liên Hệ Với Chúng Tôi</a></li>
                         @auth
                         <li><a href="">Trang Cá Nhân</a></li>    
                         @endauth

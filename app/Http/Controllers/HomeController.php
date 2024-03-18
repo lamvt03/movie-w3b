@@ -14,8 +14,8 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index() {
-        $trendingVideos = Video::orderBy('view', 'desc')->limit(4)->get();
-        $videos = Video::orderBy('createdAt', 'desc')->paginate(12);
+        $trendingVideos = Video::where('isActive', true)->orderBy('view', 'desc')->limit(4)->get();
+        $videos = Video::where('isActive', true)->orderBy('createdAt', 'desc')->paginate(12);
         return view('web.home')->with([
                 'trendingVideos' => $trendingVideos,
                 'videos' => $videos
@@ -75,6 +75,7 @@ class HomeController extends Controller
         $category = Category::where('code', $code)->first();
         $videos = Video::join('categories', 'videos.categoryId', '=', 'categories.id')
                         ->select('videos.*')
+                        ->where('videos.isActive', true)
                         ->where('categories.code', $code)
                         ->orderBy('videos.createdAt', 'desc')
                         ->paginate(12);
@@ -86,7 +87,9 @@ class HomeController extends Controller
     public function search(Request $request){
         $videos = Video::join('categories', 'videos.categoryId', '=', 'categories.id')
                         ->select('videos.*')
+                        ->where('videos.isActive', true)
                         ->where(DB::raw("UPPER(CONCAT(videos.title, ' ', videos.director, ' ', categories.name))"), 'LIKE', '%' . strtoupper($request->keyword) . '%')
+                        ->orderBy('videos.createdAt', 'desc')
                         ->paginate(12);
         return view('web.search')->with(['videos' => $videos]);
     }

@@ -4,6 +4,7 @@
 
 @section('content')
 
+
 <!-- Normal Breadcrumb Begin -->
 <section class="normal-breadcrumb set-bg"
 		data-setbg="{{ asset('img/profile/normal-breadcrumb.jpg') }}">
