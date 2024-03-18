@@ -4,6 +4,7 @@ use App\Http\Controllers\Auth\AuthController;
 use App\Http\Controllers\Auth\ResetPasswordController;
 use App\Http\Controllers\Auth\VerificationController;
 use App\Http\Controllers\UserController;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -56,9 +57,16 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/changepass', 'UserController@showFrmChangePass')->name('showFrmChangePass');
     Route::post('/changepass', 'UserController@changePass')->name('changePass');
     Route::post('/update-profile', 'UserController@editProfile')->name('updateProfile');
-    Route::get('/favorites', 'UserController@showFavorites')->name('favorites');
+    Route::get('/favorites', 'UserController@showFavorites')->name('favorites');   
 });
 
+//Đăng nhập Facebook
+// Route::get('auth/facebook', function(){
+//     return Socialite::driver('facebook')->redirect();
+// });
+// Route::get('auth/facebook/callback', function(){
+//     return 'Facebook Call Back';
+// });
 
 
 //Giac admin
@@ -101,6 +109,7 @@ Route::get('/admin/userlike', 'AdminController@userLiked')->name('userlike'); //
 Route::get('/admin/videos/userlike', 'AdminController@userLiked')->name('userlike'); //người dùng thích
 
 Route::get('/admin/doanhthu', 'AdminController@revenue')->name('revenue'); //doanh thu
+
 Route::get('/admin/videos/doanhthu', 'AdminController@revenue')->name('revenue'); //doanh thu
 
 Route::get('admin/logout', 'AdminController@logout')->name('admin.logout');
