@@ -57,7 +57,7 @@ Route::group(['middleware' => 'auth'], function() {
     Route::get('/changepass', 'UserController@showFrmChangePass')->name('showFrmChangePass');
     Route::post('/changepass', 'UserController@changePass')->name('changePass');
     Route::post('/update-profile', 'UserController@editProfile')->name('updateProfile');
-    Route::get('/favorites', 'UserController@showFavorites')->name('favorites');
+    Route::get('/favorites', 'UserController@showFavorites')->name('favorites');   
 });
 
 //Đăng nhập Facebook
