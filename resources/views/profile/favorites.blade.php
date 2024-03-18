@@ -7,7 +7,7 @@
 <section class="blog spad" style="padding-top: 70px">
 		<div class="container">
 			<div class="text-white text-center">
-				<h4 class="font-weight-bold">Lịch Sử Giao Dịch</h4>
+				<h4 class="font-weight-bold">Phim đã thích</h4>
 				<br>
 			</div>
 			<div class="blog__details__title">
