@@ -17,9 +17,11 @@
                             <h2>{{ $trendingVideo->title }}</h2>
                             <p>Thể loại: {{ $trendingVideo->category->name }}</p>
                             @if ($trendingVideo->price == 0)
-                            <a href="{{ route('video.watch', ['v' => $trendingVideo->href])}}"><span>Xem Ngay</span> <i class="fa fa-angle-right"></i></a>
+                            <a href="{{ route('video.watch', ['v' => $trendingVideo->href])}}"><span>Xem Ngay</span> <i
+                                    class="fa fa-angle-right"></i></a>
                             @else
-                            <a href="{{ route('video.details', ['v' => $trendingVideo->href])}}" class="watch-btn"><span>{{ number_format($trendingVideo->price, 0, ',', '.') .
+                            <a href="{{ route('video.details', ['v' => $trendingVideo->href])}}"
+                                class="watch-btn"><span>{{ number_format($trendingVideo->price, 0, ',', '.') .
                                     '₫' }}
                                 </span>
                                 <i class="fa fa-angle-right"></i></a>
@@ -34,7 +36,7 @@
 </section>
 <!-- slider: end -->
 
-<section class="product spad">
+<section class="product">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
@@ -47,13 +49,12 @@
                         </div>
                         <div class="col-lg-4 col-md-4 col-sm-4">
                             <div class="btn__all m-0">
-                                <a href="#" class="primary-btn">Xem Tất Cả <i
-                                        class="fa-solid fa-arrow-right"></i></a>
+                                <a href="#" class="primary-btn">Xem Tất Cả <i class="fa-solid fa-arrow-right"></i></a>
                             </div>
                         </div>
                     </div>
 
-                    <div class="row">
+                    <div class="row video-container">
                         @foreach ($videos as $video)
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
@@ -64,7 +65,7 @@
                                         </div>
                                         <div class="view" style="margin-right: 50px">
                                             <i class="fa-solid fa-comment"></i> {{ count($video->comments) }}
-                                        </div> 
+                                        </div>
                                         <div class="view">
                                             <i class="fa fa-eye"></i> {{ $video->view}}
                                         </div>
@@ -74,7 +75,7 @@
                                     <ul class="d-flex align-items-center justify-content-between">
                                         <li>{{ $video->category->name }}</li>
                                         @php
-                                        \Illuminate\Support\Facades\App::setLocale('vi'); 
+                                        \Illuminate\Support\Facades\App::setLocale('vi');
                                         @endphp
                                         <p class="time-ago mb-0">{{ $video->createdAt->diffForHumans() }}</p>
                                     </ul>
@@ -89,8 +90,11 @@
                     </div>
                 </div>
 
-                <div>
+                {{-- <div>
                     {{ $videos->links('vendor.pagination.custom-pagination') }}
+                </div> --}}
+                <div class="d-flex justify-content-center">
+                    <div class="infinity-scroll-spinner invisible"></div>
                 </div>
             </div>
             <div class="col-lg-4 col-md-6 col-sm-8">
@@ -107,7 +111,7 @@
                         </ul>
                         <div class="filter__gallery">
                             <div class="product__sidebar__view__item set-bg mix day years"
-                                 data-setbg="{{ asset('img/sidebar/tv-1.jpg') }}">
+                                data-setbg="{{ asset('img/sidebar/tv-1.jpg') }}">
                                 <div class="ep">41 Tập</div>
                                 <div class="view">
                                     <i class="fa fa-eye"></i> 20
@@ -117,7 +121,7 @@
                                 </h5>
                             </div>
                             <div class="product__sidebar__view__item set-bg mix month week"
-                                 data-setbg="{{ asset('img/sidebar/tv-2.jpg') }}">
+                                data-setbg="{{ asset('img/sidebar/tv-2.jpg') }}">
                                 <div class="ep">42 Tập</div>
                                 <div class="view">
                                     <i class="fa fa-eye"></i> 15
@@ -127,7 +131,7 @@
                                 </h5>
                             </div>
                             <div class="product__sidebar__view__item set-bg mix week years"
-                                 data-setbg="{{ asset('img/sidebar/tv-3.jpg') }}">
+                                data-setbg="{{ asset('img/sidebar/tv-3.jpg') }}">
                                 <div class="ep">57 Tập</div>
                                 <div class="view">
                                     <i class="fa fa-eye"></i> 100
@@ -137,7 +141,7 @@
                                 </h5>
                             </div>
                             <div class="product__sidebar__view__item set-bg mix years month"
-                                 data-setbg="{{ asset('img/sidebar/tv-4.jpg') }}">
+                                data-setbg="{{ asset('img/sidebar/tv-4.jpg') }}">
                                 <div class="ep">44 Tập</div>
                                 <div class="view">
                                     <i class="fa fa-eye"></i> 20
@@ -147,7 +151,7 @@
                                 </h5>
                             </div>
                             <div class="product__sidebar__view__item set-bg mix day"
-                                 data-setbg="{{ asset('img/sidebar/tv-5.jpg') }}">
+                                data-setbg="{{ asset('img/sidebar/tv-5.jpg') }}">
                                 <div class="ep">3 Tập</div>
                                 <div class="view">
                                     <i class="fa fa-eye"></i> 56
@@ -165,8 +169,7 @@
                         </div>
                         <div class="product__sidebar__comment__item">
                             <div class="product__sidebar__comment__item__pic">
-                                <img src="{{ asset('img/sidebar/comment-1.jpg') }}"
-                                     alt="">
+                                <img src="{{ asset('img/sidebar/comment-1.jpg') }}" alt="">
                             </div>
                             <div class="product__sidebar__comment__item__text">
                                 <ul>
@@ -180,8 +183,7 @@
                         </div>
                         <div class="product__sidebar__comment__item">
                             <div class="product__sidebar__comment__item__pic">
-                                <img src="{{ asset('img/sidebar/comment-2.jpg') }}"
-                                     alt="">
+                                <img src="{{ asset('img/sidebar/comment-2.jpg') }}" alt="">
                             </div>
                             <div class="product__sidebar__comment__item__text">
                                 <ul>
@@ -195,8 +197,7 @@
                         </div>
                         <div class="product__sidebar__comment__item">
                             <div class="product__sidebar__comment__item__pic">
-                                <img src="{{ asset('img/sidebar/comment-3.jpg') }}"
-                                     alt="">
+                                <img src="{{ asset('img/sidebar/comment-3.jpg') }}" alt="">
                             </div>
                             <div class="product__sidebar__comment__item__text">
                                 <ul>
@@ -214,4 +215,98 @@
         </div>
     </div>
 </section>
+@endsection
+
+@section('additional-scripts')
+<script type="text/javascript">
+    const timeAgo = (timestamp) => {
+    const timezoneOffsetMilliseconds = 7 * 60 * 60 * 1000;
+    const seconds = Math.floor(
+        (new Date() - new Date(timestamp) - timezoneOffsetMilliseconds) / 1000
+    );
+    const intervals = {
+        năm: 31536000,
+        tháng: 2592000,
+        tuần: 604800,
+        ngày: 86400,
+        giờ: 3600,
+        phút: 60,
+        giây: 1,
+    };
+
+    for (let key in intervals) {
+        const interval = Math.floor(seconds / intervals[key]);
+        if (interval >= 1) {
+            return interval + " " + key + " trước";
+        }
+    }
+    return "Vừa xong";
+};
+</script>
+<script type="text/javascript">
+    const footer = document.querySelector('footer');
+    const infinityScroll = document.querySelector('.infinity-scroll-spinner');
+    const lastPage = {{ $videos->lastPage() }}
+    let page = 1;
+    let debounceTimer;
+    window.onscroll = async () => {
+        clearTimeout(debounceTimer);
+        debounceTimer = setTimeout(async () => {
+            if(window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - footer.clientHeight){
+            page++;
+            if(page <= lastPage){
+            infinityScroll.classList.remove('invisible')
+            await fetch(`/api/video/list?page=${page}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then((response) => response.json())
+            .then((data) => {
+                const html = data.data
+                    .map(
+                        (item) => `
+                        <div class="col-lg-4 col-md-6 col-sm-6">
+                            <div class="product__item">
+                                <a href="/video/details?v=${item.href}">
+                                    <div style="background-image: url('${item.poster}')" class="product__item__pic set-bg" data-setbg="${item.poster}">
+                                        <div class="comment">
+                                            <i class="fa-solid fa-heart"></i> ${item.likeQuantity}
+                                        </div>
+                                        <div class="view" style="margin-right: 50px">
+                                            <i class="fa-solid fa-comment"></i> ${item.commentQuantity}
+                                        </div>
+                                        <div class="view">
+                                            <i class="fa fa-eye"></i> ${item.view}
+                                        </div>
+                                    </div>
+                                </a>
+                                <div class="product__item__text">
+                                    <ul class="d-flex align-items-center justify-content-between">
+                                        <li>${item.category}</li>
+                                        <p class="time-ago mb-0">${timeAgo(item.createdAt)}</p>
+                                    </ul>
+
+                                    <h5>
+                                        <a href="#">${item.title}</a>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div>
+                `
+                    )
+                    .join("\n");
+                const container = document.querySelector(".video-container");
+                container.innerHTML += html;
+                infinityScroll.classList.add("invisible");
+            })
+            .catch((error) => {
+                console.error("Error:", error);
+            });
+        }
+            }
+        }, 100); 
+    };
+</script>
 @endsection
