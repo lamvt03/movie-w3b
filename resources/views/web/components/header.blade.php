@@ -23,9 +23,10 @@
                     </a>
                 </div>
             </div>
+            
             <div class="col-lg-10">
-                <div class="header__nav">
-                    <nav class="header__menu mobile-menu">
+            <div class="header__nav">
+                    <nav class="header__menu mobile-menu" >
                         <ul>
                             <li class="active">
                                 <a href="{{ route('home') }}">
@@ -33,7 +34,15 @@
                                     Trang Chủ
                                 </a>
                             </li>
-                            <li><a class="disabled" href="#"><i class="fa-solid fa-bars"></i> Thể Loại <i
+                            <!-- <li><a class="nav-item disabled"><i class="fa-solid fa-bars"></i> Thể Loại <i class="fa-solid fa-angle-down"></i>
+            </span></a>
+        <ul class="dropdown">
+            @foreach ($categories as $category)
+                <li><a href="{{route('video.category', ['code' => $category->code])}}">{{ $category->name }}</a></li>
+            @endforeach
+        </ul>
+    </li> -->
+                            <li><a class="disabled"><i class="fa-solid fa-bars"></i> Thể Loại <i
                                         class="fa-solid fa-angle-down"></i>
                                     </span></a>
                                 <ul class="dropdown">

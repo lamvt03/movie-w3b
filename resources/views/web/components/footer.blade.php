@@ -150,5 +150,10 @@
         showSwalAlert("error", "Thay đổi mật khẩu thất bại");
     </script>
 }
+@elseif(Session('wrong_pass')){
+    <script>
+        showSwalAlert("error", "Mật khẩu cũ đã nhập không chính xác.");
+    </script>
+}
 @endif
 

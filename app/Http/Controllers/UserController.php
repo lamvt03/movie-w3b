@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -62,13 +63,15 @@ class UserController extends Controller
         //Lấy thông tin về người dùng hiện tại đã đăng nhập
         $user = $request->user();
 
-        if($user->password != $request->oldPass){
-
-        }
-        //Cập nhật mật khẩu mới
+        if(Hash::check($request->oldPass, $user->password )){
+                //Cập nhật mật khẩu mới
         $user->password = bcrypt($request->newPass);
         $user->save();
         return redirect()->route('showProfile')->with('change_success', 'Thay đổi mật khẩu thành công.');
+        }
+        return redirect()->back()->with('wrong_pass', 'Mật khẩu cũ đã nhập không chính xác.');
+        
+        
         
     }
 

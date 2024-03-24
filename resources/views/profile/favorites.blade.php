@@ -58,7 +58,7 @@
                         @endforeach
                         @else
                         <p style="color: #fff; font-size: 24px; font-weight: 600;margin-top: 16px;">Không tìm thấy kết quả thích hợp</p>
-                        @endif
+                        @endif 
                     </div>
 
                 </div>
