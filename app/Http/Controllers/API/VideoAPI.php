@@ -7,7 +7,7 @@ use App\Models\Comment;
 use App\Models\Video;
 use App\Models\History;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class VideoAPI extends Controller
 {
@@ -37,5 +37,16 @@ class VideoAPI extends Controller
         $history->likedAt = $likedAt;
         $history->save();
         return $history;
+    }
+    public function list(Request $request){
+        $videos = Video::join('categories', 'videos.categoryId', '=', 'categories.id')
+                        ->select('videos.*', 'categories.name as category')
+                        ->orderBy('videos.createdAt', 'desc')
+                        ->paginate(12);
+        foreach($videos as $video){
+            $video['commentQuantity'] = count($video->comments);
+            $video['likeQuantity'] = count($video->histories);
+        }
+        return $videos;
     }
 }
